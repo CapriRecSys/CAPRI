@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'CAPRI'
-copyright = '2022, Hossein A. Rahmani'
+copyright = '2022, Ali Tourani, Hossein A. Rahmani, Mohammadmehdi Naghiaei, Yashar Deldjoo'
 author = 'Hossein A. Rahmani'
 
 # The full version, including alpha/beta/rc tags
