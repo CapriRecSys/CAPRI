@@ -83,6 +83,147 @@ respositories:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/test</span></code>: Contains the unit tests (not many right now)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/library</span></code>: Contains libraries of configuration information (look hear to see how to configure different algorithms)</p></li>
 </ul>
+<p># CAPRI: Context-Aware Interpretable Point-of-Interest Recommendation Framework</p>
+<p>![CAPRI-Context-Aware Interpretable Point-of-Interest Recommendation Framework](<a class="reference external" href="https://github.com/RecSys-lab/CAPRI/blob/main/_contents/cover.jpg">https://github.com/RecSys-lab/CAPRI/blob/main/_contents/cover.jpg</a> “CAPRI-Context-Aware interpretable PoI Recommender”)</p>
+<p>CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms.</p>
+<p>## CAPRI Overview</p>
+<p>![CAPRI](<a class="reference external" href="https://github.com/RecSys-lab/CAPRI/blob/main/_contents/CAPRIFramework.png">https://github.com/RecSys-lab/CAPRI/blob/main/_contents/CAPRIFramework.png</a> “CAPRI-Context-Aware interpretable PoI Recommender”)</p>
+<p>## ☑️ Prerequisites</p>
+<p>You will need below libraries to be installed before running the application:</p>
+<ul class="simple">
+<li><p>Python &gt;= 3.4</p></li>
+<li><p>NumPy &gt;= 1.19</p></li>
+<li><p>SciPy &gt;= 1.6</p></li>
+<li><p>PyInquirer &gt;= 1.0.3</p></li>
+</ul>
+<p>For a simple solution, you can simply run the below command in the root directory:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<span class="pre">`</span></code></p>
+<p>## 🚀 Launch the Application</p>
+<p>Start the project by running the <cite>main.py</cite> in the root directory. With this, the application settings are loaded from the <cite>config.py</cite> file. You can select from different options to choose a model (e.g. GeoSoCa, available on the <strong>Models</strong> folder) and a dataset (e.g. Yelp, available on the <strong>Data</strong> folder) to be processed by the selected model, along with a fusion operator (e.g. prodect or sum). The system starts processing data using the selected model and provides some evaluations on it as well. The final results will be added to the <strong>Generated</strong> folder, withe the name template representing which model has been emplyed on which dataset and with what item selection rate.</p>
+<p>## 🧩 Contribution Guide</p>
+<p>Contribution to the project can be done through various approaches:</p>
+<p>### Adding a new dataset</p>
+<p>All datasets can be found in <strong>./Data/</strong> directory. In order to add a new dataset, you should:</p>
+<ul class="simple">
+<li><p>Modify the <strong>config.py</strong> file and add a record to the datasets dictionary. The key of the item should be the dataset’s name (CapitalCase) and the value is an array of strings containing the dataset scopes (all CapitalCase). For instance</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">&quot;DatasetName&quot;:</span>&#160; <span class="pre">[&quot;Scope1&quot;,</span> <span class="pre">&quot;Scope2&quot;,</span> <span class="pre">&quot;Scope3&quot;]</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Add a folder to the <strong>./Data/</strong> directory with the exact same name selected in the previous step. This way, your configs are attached to the dataset. In the created folder, add files of the dataset (preferably camelCase, e.g. socialRelations). Note that for each of these files, a variable with the exact same name will be automatically generated and fed to the models section. You can find a sample for the dataset sturcture here:</p></li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>bash
++ Data/</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>Dataset1</dt><dd><ul>
+<li><p>datasetFile1</p></li>
+<li><p>datasetFile2</p></li>
+<li><p>datasetFile3</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Dataset2</dt><dd><ul>
+<li><p>datasetFile4</p></li>
+<li><p>datasetFile5</p></li>
+<li><p>datasetFile6</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p>### Adding a new model</p>
+<p>Models can be found in <strong>./Models/</strong> directory. In order to add a new model, you should:</p>
+<ul class="simple">
+<li><p>Modify the <strong>config.py</strong> file and add a record to the models dictionary. The key of the item should be the model’s name (CapitalCase) and the value is an array of strings containing the scopes that mode covers (all CapitalCase). For instance</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">&quot;ModelName&quot;:</span>&#160; <span class="pre">[&quot;Scope1&quot;,</span> <span class="pre">&quot;Scope2&quot;,</span> <span class="pre">&quot;Scope3&quot;]</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>Add a folder to the <strong>./Models/</strong> directory with the exact same name selected in the previous step. This way, your configs are attached to the model. In the created folder, add files of the model (preferably camelCase, e.g. socialRelations). Models contain a <strong>main.py</strong> file that holds the contents of the model. The file <strong>main.py</strong> contains a class with the exact name of the model and the letter ‘Main’ (e.g. ModelNameMain). This class should contain a main function with two argument: (i) datasetFiles dictionary, (ii) the parameters of the selected model (including top-K items for evaluation, sparsity ratio, restricted list for computation, and dataset name). For a better description, check the code sample below:</p></li>
+</ul>
+<p><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>python
+import numpy as np
+…</p>
+<dl class="simple">
+<dt>class NewModelMain:</dt><dd><dl class="simple">
+<dt>def main(datasetFiles, parameters):</dt><dd><p>print(‘Other codes goes here’)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>There is a <strong>utils.py</strong> file in the <strong>./Models/</strong> directory that keeps the utilities that can be used in all models. If you are thinking about a customized utilities with other functions, you can add an <strong>extendedUtils.py</strong> file in the model’s directory. Also, a <strong>/lib/</strong> directory is considered in each model folders that contains the libraries used in the model. You can find a sample for the dataset sturcture here:</p>
+<p><a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a>bash
++ Models/</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>Model1/</dt><dd><ul>
+<li><p>lib/</p></li>
+<li><p>__init__.py</p></li>
+<li><p>main.py</p></li>
+<li><p>extendedUtils.py</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>utils.py</p></li>
+<li><p>__init__.py</p></li>
+</ul>
+</div></blockquote>
+<p><a href="#id21"><span class="problematic" id="id22">``</span></a><a href="#id23"><span class="problematic" id="id24">`</span></a></p>
+<p>Note: do not forget to add a <strong>_init_</strong>.py file to the directories you make.</p>
+<p>### Adding a new evaluation</p>
+<p>You can simply add the evaluations to the <cite>./Evaluations/metrics/accuracy.py</cite> or <cite>./Evaluations/metrics/beyoundAccuracy.py</cite> file. Please note that to ensure the evaluation modules work correctly, we use the Python unit test library which can be found in <cite>./Evaluations/test.py</cite>. To find out more about how unit tests work, check [this Digital-Ocean link](<a class="reference external" href="https://jingwen-z.github.io/how-to-apply-mock-with-python-unittest-module/">https://jingwen-z.github.io/how-to-apply-mock-with-python-unittest-module/</a> “this Digital-Ocean link”). Hereby, please always consider adding a unit test for the evaluation modules you add.
+To run the test module, you can run the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">test.py</span>
+<span class="pre">`</span></code></p>
+<p>## ⚙️ Contributing</p>
+<p>There are many ways to contribute to <strong>CAPRI</strong>! You can contribute code, make improvements to the documentation, report or investigate [bugs and issues](<a class="reference external" href="https://github.com/RecSys-Lab/CAPRI/issues">https://github.com/RecSys-Lab/CAPRI/issues</a>). We welcome all contributions from bug fixes to new features and extensions. Feel free to share with us your custom configuration files. We are creating a vault of reproducible experiments, and we would be glad of mentioning your contribution. Reference <strong>CAPRI</strong> in your blogs, papers, and articles. Also, talk about <strong>CAPRI</strong> on social media with the hashtag <strong>#capri_framework</strong>.</p>
+<p>## Team</p>
+<p>CAPRI is developed with ❤️ by:</p>
+<div class="line-block">
+<div class="line">&lt;a href=”<a class="reference external" href="https://github.com/yasdel">https://github.com/yasdel</a>”&gt;&lt;img src=”<a class="reference external" href="https://yasdel.github.io/images/yashar_avator.jpg">https://yasdel.github.io/images/yashar_avator.jpg</a>” width=”70”&gt;&lt;/a&gt; | &lt;a href=”<a class="reference external" href="https://github.com/rahmanidashti">https://github.com/rahmanidashti</a>”&gt;&lt;img src=”<a class="reference external" href="https://github.com/rahmanidashti.png?size=70">https://github.com/rahmanidashti.png?size=70</a>”&gt;&lt;/a&gt; | &lt;a href=”<a class="reference external" href="https://github.com/alitourani">https://github.com/alitourani</a>”&gt;&lt;img src=”<a class="reference external" href="https://github.com/alitourani.png?size=70">https://github.com/alitourani.png?size=70</a>”&gt;&lt;/a&gt; |</div>
+<div class="line">—————————————————————————————————————- | ——————————————————————————————————- | ————————————————————————————————- |</div>
+<div class="line">[Yashar Deldjoo](<a class="reference external" href="mailto:yashar&#46;deldjoo&#37;&#52;&#48;poliba&#46;it">mailto:yashar<span>&#46;</span>deldjoo<span>&#64;</span>poliba<span>&#46;</span>it</a> “<a class="reference external" href="mailto:yashar&#46;deldjoo&#37;&#52;&#48;poliba&#46;it">yashar<span>&#46;</span>deldjoo<span>&#64;</span>poliba<span>&#46;</span>it</a>”)                                     | [Hossein A. Rahmani](<a class="reference external" href="mailto:rahmanidashti&#37;&#52;&#48;alumni&#46;znu&#46;ac&#46;ir">mailto:rahmanidashti<span>&#64;</span>alumni<span>&#46;</span>znu<span>&#46;</span>ac<span>&#46;</span>ir</a> “<a class="reference external" href="mailto:rahmanidashti&#37;&#52;&#48;alumni&#46;znu&#46;ac&#46;ir">rahmanidashti<span>&#64;</span>alumni<span>&#46;</span>znu<span>&#46;</span>ac<span>&#46;</span>ir</a>”)            | [Ali Tourani](<a class="reference external" href="mailto:tourani&#37;&#52;&#48;msc&#46;guilan&#46;ac&#46;ir">mailto:tourani<span>&#64;</span>msc<span>&#46;</span>guilan<span>&#46;</span>ac<span>&#46;</span>ir</a> “<a class="reference external" href="mailto:tourani&#37;&#52;&#48;msc&#46;guilan&#46;ac&#46;ir">tourani<span>&#64;</span>msc<span>&#46;</span>guilan<span>&#46;</span>ac<span>&#46;</span>ir</a>”)                         |</div>
+</div>
+<p>## Acknowledgements</p>
+<p>TBA</p>
+<p>## 📝 Citation</p>
+<p>If you find <strong>CAPRI</strong> useful for your research or development, please cite the following [paper](<a class="reference external" href="https://arxiv.org/">https://arxiv.org/</a>):</p>
+<p><a href="#id25"><span class="problematic" id="id26">``</span></a>`
+&#64;inproceedings{RecsysLab2021CAPRI,</p>
+<blockquote>
+<div><p>title={TBD},
+author={TBA},
+booktitle={TBA},
+year={2021}</p>
+</div></blockquote>
+<section id="id27">
+<h3>}<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>## ⚠️ TODOs</p>
+<ul class="simple">
+<li><p>Saving only userIds in Active/Inactive lists (groupby and drop freq)</p></li>
+<li><p>Loading AKDE of GeoSoCa from disk</p></li>
+<li><p>Loading FCF, AMK, KDE of LORE from disk</p></li>
+<li><p>Loading S, G of USG from disk</p></li>
+<li><p>Add the impact of <strong>Weighted Sum Fusion</strong> when running models</p></li>
+<li><p>Improve unit-tests for beyound accuracy evaluations</p></li>
+<li><p>Add a separate metric evaluations class for fairness</p></li>
+<li><p>GridSearch for all the parameters as weighted sum</p></li>
+</ul>
+</section>
 </section>
 <section id="welcome-to-capri-s-documentation">
 <h2>Welcome to CAPRI’s documentation!<a class="headerlink" href="#welcome-to-capri-s-documentation" title="Permalink to this headline">¶</a></h2>
