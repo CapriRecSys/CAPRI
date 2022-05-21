@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Generated execution results
+Outputs/*
+!Outputs/.gitkeep
+
+# Saved models
+Models/**/savedModels/*
+!Models/**/savedModels/.gitkeep
+
+# Avoid IDE-specificity
+**/*/.idea/
