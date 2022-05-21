@@ -5,8 +5,6 @@
 
 .. include:: ../README.rst
 
-.. include:: ../README.md
-
 Welcome to CAPRI's documentation!
 =================================
 
