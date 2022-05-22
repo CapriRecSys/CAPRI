@@ -1,5 +1,5 @@
 ============
-Librec-auto
+CAPRI, POI Recommendation Framework
 ============
 
 
@@ -9,7 +9,7 @@ Librec-auto
 About
 =====
 
-``librec-auto`` is a Python tool for running recommender systems experiments.
+``CAPRI`` is a Python tool for running recommender systems experiments.
 It is built on top of the open-source LibRec_ package, and
 can take advantage of the many algorithm and metric implementations there.
 

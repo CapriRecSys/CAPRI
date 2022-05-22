@@ -2,7 +2,7 @@
 
 ![CAPRI-Context-Aware Interpretable Point-of-Interest Recommendation Framework](https://github.com/RecSys-lab/CAPRI/blob/main/_contents/cover.jpg "CAPRI-Context-Aware interpretable PoI Recommender")
 
-CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms.
+CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms. More complete documentation is available at [readthedocs](https://capri.readthedocs.io/en/latest/ "readthedocs")
 
 ## CAPRI Overview
 
@@ -139,3 +139,4 @@ If you find **CAPRI** useful for your research or development, please cite the f
 - Improve unit-tests for beyound accuracy evaluations
 - Add a separate metric evaluations class for fairness
 - GridSearch for all the parameters as weighted sum
+- Making a pip package for CAPRI (release planning)
