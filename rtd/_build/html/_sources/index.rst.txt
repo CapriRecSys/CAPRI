@@ -7,7 +7,6 @@
 
 Welcome to CAPRI's documentation!
 =================================
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -18,7 +17,6 @@ Welcome to CAPRI's documentation!
 
 Indices and tables
 ==================
-
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`

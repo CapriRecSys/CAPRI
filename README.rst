@@ -1,67 +1,56 @@
 ============
-CAPRI, POI Recommendation Framework
+CAPRI, A POI RecSys Framework
 ============
 
 
-.. image:: https://coveralls.io/repos/github/that-recsys-lab/librec-auto/badge.svg?branch=master
-  :target: https://coveralls.io/github/that-recsys-lab/librec-auto?branch=master
+.. image:: https://github.com/CapriRecSys/CAPRI/blob/main/_contents/CAPRIFramework.png
+  :target: https://github.com/CapriRecSys/CAPRI
 
 About
 =====
 
-``CAPRI`` is a Python tool for running recommender systems experiments.
-It is built on top of the open-source LibRec_ package, and
-can take advantage of the many algorithm and metric implementations there.
+``CAPRI`` stands for "Context-Aware Interpretable Point-of-Interest Recommendation Framework".
+It is a Python-based tool for standardizing algorithms' implementations and enabling the reproducibility of experiments
+in the field of Point-of-Interest (POI) recommendation. In ``CAPRI``, we provided a set of datasets, models, and algorithms
+to simplify the process of reproducibility and enable the comparison of algorithms' performance.
 
-.. _LibRec: https://github.com/guoguibing/librec
+.. _CAPRI: https://github.com/CapriRecSys/CAPRI
 
-The basic element of ``librec-auto`` execution is the "study", which is a series
-of experiments carried with a single algorithm, a single data set, and a set
-of evaluation metrics. The experiments differ from each other by the hyperparameters
-given to the algorithm. ``librec-auto`` allows such studies to be conducted with
-minimal experimenter intervention, and supports such capabilities as:
+``CAPRI`` covers state-of-the-art models and algorithms and well-known datasets in the field of POI recommendations.
+As it provides and supports reproducibility of results, users can easily share their experimental settings to
+achieve the same outcomes for comparative experiments.
+This contains pre-implemented methodological workflows, a wide range of models and algorithms, and
+various datasets for benchmarking purposes. Other features of ``CAPRI`` include:
 
-* recommendation result re-ranking
-* re-running evaluations without re-computing results
-* fairness-aware metrics
-* summarizing results in output graphs
-* integration with Slack and Dropbox
-
-More complete documentation is available at readthedocs_:
-
-.. _readthedocs: https://librec-auto.readthedocs.io/en/latest/index.html
+* Producing recommendation lists based on a wide range of configurations
+* Configuration using a wide range of choices
+* Ability to run experiments using various evaluation metrics
 
 Workflow
 ========
 
-The workflow of an study involves identifying appropriate data, creating
-training / test splits, implementing or choosing algorithms, running experiments
-(possibly with a range of different parameters), and reporting on the results.
+The framework is released under GPL v3 License and can be accessed (download or clone) via GitHub.
+
 
 Configuration
 =============
 
 Librec-auto uses an XML-based configuration system similar to Maven or Ant.
 
-Project structure
+File Structure
 =================
 
-This directory contains the Python libraries for the librec_auto module. There are two other affiliated
-respositories:
+Regarding the implementation, the files of the frameworks are organized in multiple directories for easier
+accessibility and extensibility purposes.
+As a general naming structure and to combine words into a single string in CAPRI, we use PascalCase and camelCase
+for folder and file names, respectively. Below, the main directories of the framework containing files are presented in brief:
 
-* `librec-auto-java`_: Contains the java source for the wrapper between LibRec and librec-auto, which is implemented in the ``auto.jar`` file.
-* `librec-auto-demo2021`_: Contains sample data and configuration files that can be used to explore the functionality of librec-auto
-
-.. _librec-auto-java: https://github.com/that-recsys-lab/librec-auto-java
-.. _librec-auto-demo2021: https://github.com/that-recsys-lab/librec-auto-demo2021
-
-Repo structure
-===============
-
-* ``/bin``: Contains auxiliary scripts including the study setup wizard.
-* ``/librec_auto/jar``: Contains the jar files for LibRec and the wrapper.
-* ``/librec_auto/rules``: Contains the rules for translating configuration data to LibRec properties format.
-* ``/librec_auto/core``: Contains the Python code for the project.
-* ``/librec_auto/docs``: Contains documentation for the project
-* ``/librec_auto/test``: Contains the unit tests (not many right now)
-* ``/librec_auto/library``: Contains libraries of configuration information (look hear to see how to configure different algorithms)
+* `Data`_: Contains all sorts of data-driven files and functions. Each dataset contains different files with ``.txt`` extensions,
+including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items
+such as social and geographical data are stored in folders with the same name as each dataset.
+* `Models`_: Contains the models used in the framework and some common functions in the ``utils.py`` file to avoid code
+repetition and improve re-usability of model files.
+* `Evaluations`_: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator
+function ``evaluator.py`` that utilizes the mentioned metrics, and a unit test file ``test.py`` for checking the performance of
+each metric with different input types.
+* `Outputs`_: Keeps the final results, including ranked lists and evaluation outputs produced by the framework.

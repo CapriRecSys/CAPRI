@@ -2,7 +2,9 @@
 
 ![CAPRI-Context-Aware Interpretable Point-of-Interest Recommendation Framework](https://github.com/RecSys-lab/CAPRI/blob/main/_contents/cover.jpg "CAPRI-Context-Aware interpretable PoI Recommender")
 
-CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms. More complete documentation is available at [readthedocs](https://capri.readthedocs.io/en/latest/ "readthedocs")
+CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms.
+
+More complete documentation is available at [readthedocs](https://capri.readthedocs.io/en/latest/ "readthedocs").
 
 ## CAPRI Overview
 
@@ -108,9 +110,15 @@ There are many ways to contribute to **CAPRI**! You can contribute code, make im
 
 CAPRI is developed with ❤️ by:
 
-| <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a> | <a href="https://github.com/rahmanidashti"><img src="https://github.com/rahmanidashti.png?size=70"></a> | <a href="https://github.com/alitourani"><img src="https://github.com/alitourani.png?size=70"></a> |
+| <a href="https://github.com/alitourani"><img src="https://github.com/alitourani.png?size=70"></a>
+| <a href="https://github.com/rahmanidashti"><img src="https://github.com/rahmanidashti.png?size=70"></a>
+| <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a> |
+| <a href="https://github.com/naghiaei"><img src="https://github.com/naghiaei.png?size=70"></a> |
 | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")                                     | [Hossein A. Rahmani](mailto:rahmanidashti@alumni.znu.ac.ir "rahmanidashti@alumni.znu.ac.ir")            | [Ali Tourani](mailto:tourani@msc.guilan.ac.ir "tourani@msc.guilan.ac.ir")                         |
+| [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")
+| [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")
+| [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it") |
+| [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu") |
 
 ## Acknowledgements
 

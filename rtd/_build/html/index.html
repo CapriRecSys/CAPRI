@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>CAPRI, POI Recommendation Framework &#8212; CAPRI 0.1 documentation</title>
+    <title>CAPRI, A POI RecSys Framework &#8212; CAPRI 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -32,58 +32,51 @@
 
           <div class="body" role="main">
             
-  <section id="capri-poi-recommendation-framework">
-<h1>CAPRI, POI Recommendation Framework<a class="headerlink" href="#capri-poi-recommendation-framework" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://coveralls.io/github/that-recsys-lab/librec-auto?branch=master"><img alt="https://coveralls.io/repos/github/that-recsys-lab/librec-auto/badge.svg?branch=master" src="https://coveralls.io/repos/github/that-recsys-lab/librec-auto/badge.svg?branch=master" /></a>
+  <section id="capri-a-poi-recsys-framework">
+<h1>CAPRI, A POI RecSys Framework<a class="headerlink" href="#capri-a-poi-recsys-framework" title="Permalink to this headline">¶</a></h1>
+<a class="reference external image-reference" href="https://github.com/CapriRecSys/CAPRI"><img alt="https://github.com/CapriRecSys/CAPRI/blob/main/_contents/CAPRIFramework.png" src="https://github.com/CapriRecSys/CAPRI/blob/main/_contents/CAPRIFramework.png" /></a>
 <section id="about">
 <h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> is a Python tool for running recommender systems experiments.
-It is built on top of the open-source <a class="reference external" href="https://github.com/guoguibing/librec">LibRec</a> package, and
-can take advantage of the many algorithm and metric implementations there.</p>
-<p>The basic element of <code class="docutils literal notranslate"><span class="pre">librec-auto</span></code> execution is the “study”, which is a series
-of experiments carried with a single algorithm, a single data set, and a set
-of evaluation metrics. The experiments differ from each other by the hyperparameters
-given to the algorithm. <code class="docutils literal notranslate"><span class="pre">librec-auto</span></code> allows such studies to be conducted with
-minimal experimenter intervention, and supports such capabilities as:</p>
+<p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> stands for “Context-Aware Interpretable Point-of-Interest Recommendation Framework”.
+It is a Python-based tool for standardizing algorithms’ implementations and enabling the reproducibility of experiments
+in the field of Point-of-Interest (POI) recommendation. In <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code>, we provided a set of datasets, models, and algorithms
+to simplify the process of reproducibility and enable the comparison of algorithms’ performance.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> covers state-of-the-art models and algorithms and well-known datasets in the field of POI recommendations.
+As it provides and supports reproducibility of results, users can easily share their experimental settings to
+achieve the same outcomes for comparative experiments.
+This contains pre-implemented methodological workflows, a wide range of models and algorithms, and
+various datasets for benchmarking purposes. Other features of <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> include:</p>
 <ul class="simple">
-<li><p>recommendation result re-ranking</p></li>
-<li><p>re-running evaluations without re-computing results</p></li>
-<li><p>fairness-aware metrics</p></li>
-<li><p>summarizing results in output graphs</p></li>
-<li><p>integration with Slack and Dropbox</p></li>
+<li><p>Producing recommendation lists based on a wide range of configurations</p></li>
+<li><p>Configuration using a wide range of choices</p></li>
+<li><p>Ability to run experiments using various evaluation metrics</p></li>
 </ul>
-<p>More complete documentation is available at <a class="reference external" href="https://librec-auto.readthedocs.io/en/latest/index.html">readthedocs</a>:</p>
 </section>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">¶</a></h2>
-<p>The workflow of an study involves identifying appropriate data, creating
-training / test splits, implementing or choosing algorithms, running experiments
-(possibly with a range of different parameters), and reporting on the results.</p>
+<p>The framework is released under GPL v3 License and can be accessed (download or clone) via GitHub.</p>
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Librec-auto uses an XML-based configuration system similar to Maven or Ant.</p>
 </section>
-<section id="project-structure">
-<h2>Project structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
-<p>This directory contains the Python libraries for the librec_auto module. There are two other affiliated
-respositories:</p>
+<section id="file-structure">
+<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+<p>Regarding the implementation, the files of the frameworks are organized in multiple directories for easier
+accessibility and extensibility purposes.
+As a general naming structure and to combine words into a single string in CAPRI, we use PascalCase and camelCase
+for folder and file names, respectively. Below, the main directories of the framework containing files are presented in brief:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/that-recsys-lab/librec-auto-java">librec-auto-java</a>: Contains the java source for the wrapper between LibRec and librec-auto, which is implemented in the <code class="docutils literal notranslate"><span class="pre">auto.jar</span></code> file.</p></li>
-<li><p><a class="reference external" href="https://github.com/that-recsys-lab/librec-auto-demo2021">librec-auto-demo2021</a>: Contains sample data and configuration files that can be used to explore the functionality of librec-auto</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`Data`_</span></a>: Contains all sorts of data-driven files and functions. Each dataset contains different files with <code class="docutils literal notranslate"><span class="pre">.txt</span></code> extensions,</p></li>
 </ul>
-</section>
-<section id="repo-structure">
-<h2>Repo structure<a class="headerlink" href="#repo-structure" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/bin</span></code>: Contains auxiliary scripts including the study setup wizard.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/jar</span></code>: Contains the jar files for LibRec and the wrapper.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/rules</span></code>: Contains the rules for translating configuration data to LibRec properties format.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/core</span></code>: Contains the Python code for the project.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/docs</span></code>: Contains documentation for the project</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/test</span></code>: Contains the unit tests (not many right now)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/librec_auto/library</span></code>: Contains libraries of configuration information (look hear to see how to configure different algorithms)</p></li>
-</ul>
+<p>including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items
+such as social and geographical data are stored in folders with the same name as each dataset.
+* <a href="#id3"><span class="problematic" id="id4">`Models`_</span></a>: Contains the models used in the framework and some common functions in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to avoid code
+repetition and improve re-usability of model files.
+* <a href="#id5"><span class="problematic" id="id6">`Evaluations`_</span></a>: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator
+function <code class="docutils literal notranslate"><span class="pre">evaluator.py</span></code> that utilizes the mentioned metrics, and a unit test file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> for checking the performance of
+each metric with different input types.
+* <a href="#id7"><span class="problematic" id="id8">`Outputs`_</span></a>: Keeps the final results, including ranked lists and evaluation outputs produced by the framework.</p>
 </section>
 <section id="welcome-to-capri-s-documentation">
 <h2>Welcome to CAPRI’s documentation!<a class="headerlink" href="#welcome-to-capri-s-documentation" title="Permalink to this headline">¶</a></h2>
