@@ -3,8 +3,8 @@ CAPRI, A POI RecSys Framework
 ============
 
 
-.. image:: https://github.com/CapriRecSys/CAPRI/blob/main/_contents/CAPRIFramework.png
-  :target: https://github.com/CapriRecSys/CAPRI
+.. .. image:: https://coveralls.io/repos/github/that-recsys-lab/librec-auto/badge.svg?branch=master
+..   :target: https://coveralls.io/github/that-recsys-lab/librec-auto?branch=master
 
 About
 =====

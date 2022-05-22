@@ -49,13 +49,12 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'alabaster'
 
+html_logo = "../docs/assets/images/logo.svg"
+
 html_theme_options = {
-    'github_user':
-    'CapriRecSys',
-    'github_repo':
-    'CAPRI',
-    'description':
-    'The CAPRI project aims to automate contextual POI recommendation algorithms.'
+    'github_user': 'CapriRecSys',
+    'github_repo': 'CAPRI',
+    'description': 'The CAPRI project aims to automate contextual POI recommendation algorithms.'
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
