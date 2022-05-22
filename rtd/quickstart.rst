@@ -5,164 +5,38 @@ Quickstart guide
 Installation
 ============
 
-You can install ``librec-auto`` using pip as follows:
+You can easily clone the GitHub repository of ``CAPRI`` as below:
 
 ::
+	$ git clone https://github.com/CapriRecSys/CAPRI.git
 
-	$ pip install librec-auto
-
-
-Dependencies
-------------
-You will need to install the Java `Java Runtime Environment 8`_, since ``Librec`` is executed from a Java JAR file.
-
-.. _Java Runtime Environment 8: https://java.com/en/download/
-
-The installation is complete. You can now run your experiments with:
+Then, install ``CAPRI`` 's required libraries using the command below:
 
 ::
+	$ pip install -r requirements.txt
 
-	$ python -m librec_auto -t <study directory>
 
-
-Building from Source
+Storing the Results
 ====================
 
-Instead of installing ``librec_auto`` from pip, you can also build it from the source.
-
-First, you'll need to clone this repository:
+The final results of running the experiments, including a file containing the list of recommendation and a file containing the evaluation results will be stored on the ``Outputs`` directory.
 
 ::
 
-	$ git clone https://github.com/that-recsys-lab/librec-auto.git && cd librec-auto
+	root
+	└── Outputs
 
-Then, run the setup script:
+You can see that the names of the stored files starts with ``Eval_`` or ``Rec_`` prefix, which indicates the "Evaluation Results" and "Recommendation Lists," respectively.
+For instance, ``Eval_GeoSoCa_Gowalla_Sum_5628user_top10_limit15.txt`` indicating Evaluation results of running GeoSoCa on Gowalla dataset using Sum function, applied on 5628 users, with selected top 10 results for evaluation and list size of 15.
 
-::
-
-	$ python setup.py install
-
-
-If you already have ``librec_auto`` installed, you will need to uninstall
-the ``librec_auto`` module before you install it from source. Run:
+Also, as running experiments takes a lot of time, the framework automatically stores calculations in shape of Python Numpy arrays in the ``Models`` directory:
 
 ::
 
-	$ pip uninstall librec_auto
-
-Note on MS Recommenders
-=======================
-
-The Microsoft Recommenders library is available as an installation extra: 
-
-::
-
-	$ pip install librec-auto[ms-recommend]
-	
-However, you may find it easier to install this package manually. In particular, pip will not install the library on version of
-Python greater than 3.7. You also must have a version of tensorflow no later that 2.2.0. If you are installing on Python 3.8 or later,
-we have had success installing from the GitHub repository directly.
-
-::
-
-	$ pip install -e git+https://github.com/microsoft/recommenders/#egg=pkg
-	
-The ``librec-auto-demo2021`` repository has a working example of using a variational autoencoder from MS Recommenders: `librec-auto-demo2021 <github.com/that-recsys-lab/librec-auto-demo2021>`_ 
-
-
-Running an Example
-==================
-
-Clone the following ``librec-auto-demo2021`` repository:
-
-::
-
-	$ git clone https://github.com/that-recsys-lab/librec-auto-demo2021.git
-
-You can run a basic matrix factorization recommender over a movie ratings data set using the following command:
-
-::
-
-	$ python -m librec_auto run -t librec-auto-demo2021/demo01 -c config01.xml
-
-The configuration file for the above study is located at:
-
-::
-
-	$ librec-auto-demo2020/demo01/config/config01.xml
-
-The ``-c`` command line parameter allows other configuration files to be selected.
-
-Results
-=======
-
-Let's say you want to run a study in the target directory ``target``.
-
-::
-
-	target
-	└── conf
-	    └── config01.xml
-
-Now, let's say you run the study, like:
-
-::
-
-	python -m librec_auto -t target run
-
-Your directory structure should now look similar to this:
-
-::
-
-	target
-	├── conf
-	│   └── config01.xml
-	├── exp00000
-	│   ├── conf
-	│   │   ├── config.xml
-	│   │   └── librec.properties
-	│   ├── log
-	│   │   └── librec-<timstamp>.log
-	│   ├── original
-	│   └── result
-	│       ├── out-1.txt
-	│       ├── out-2.txt
-	│       └── ...
-	├── exp00001
-	│   └── ...
-	├── exp00002
-	│   └── ...
-	├── ...
-	└── post
-	    ├── study-results-full_<timestamp>.csv
-	    ├── study-results-summary_<timestamp>.csv
-	    └── ...
-	output.xml
-
-``librec-auto`` will run several experiments for your ``target`` study.
-These experiments each have their own subdirectory, under ``target``. In the
-diagram above, these subdirectories are like ``exp0000n``.
-
-If your configuration file is set up to produce them, various compilations of the study results
-will be stored in the ``target/post`` directory. You can also write your own post-processing scripts.
-
-The ``output.xml`` file contains information about the run of the study including any errors or warning that were encountered.
-
-Quickstart with your own data
-=============================
-
-To quickly set up a librec-auto study using your own data, you can use the setup wizard provided. This is a python script located in the ``librec-auto/bin`` folder. Run the wizard with the following arguments
-
-::
-
-    $ python path_to_librec-auto/bin/wizard.py --data your_data_file --study path_of_study_directory
-
-The wizard will create a study file structure as described above and import your data file into it. It will also create a configuration with a basic experimental setup. You can run the study with the following commands:
-
-::
-
-    $ cd path_of_study_directory
-    $ python -m librec_auto run -t .
-
-Your results will be stored in the ``output.xml`` file in the study directory.
-
+	└── Models
+		└── GeoSoCa
+			└── savedModels
+		└── LORE
+			└── savedModels
+		└── USG
+			└── savedModels
