@@ -112,12 +112,12 @@ CAPRI is developed with ❤️ by:
 
 | <a href="https://github.com/alitourani"><img src="https://github.com/alitourani.png?size=70"></a>
 | <a href="https://github.com/rahmanidashti"><img src="https://github.com/rahmanidashti.png?size=70"></a>
-| <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a> |
-| <a href="https://github.com/naghiaei"><img src="https://github.com/naghiaei.png?size=70"></a> |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a>
+| <a href="https://github.com/naghiaei"><img src="https://github.com/naghiaei.png?size=70" width="70"></a> |
+| ------------ | ------------ | ------------ | ------------ |
 | [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")
 | [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")
-| [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it") |
+| [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")
 | [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu") |
 
 ## Acknowledgements
