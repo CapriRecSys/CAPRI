@@ -37,7 +37,7 @@ Configuration
 
 Librec-auto uses an XML-based configuration system similar to Maven or Ant.
 
-File Structure
+Repo Structure
 =================
 
 Regarding the implementation, the files of the frameworks are organized in multiple directories for easier
@@ -45,12 +45,15 @@ accessibility and extensibility purposes.
 As a general naming structure and to combine words into a single string in CAPRI, we use PascalCase and camelCase
 for folder and file names, respectively. Below, the main directories of the framework containing files are presented in brief:
 
-* `Data`_: Contains all sorts of data-driven files and functions. Each dataset contains different files with ``.txt`` extensions,
-including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items
-such as social and geographical data are stored in folders with the same name as each dataset.
-* `Models`_: Contains the models used in the framework and some common functions in the ``utils.py`` file to avoid code
-repetition and improve re-usability of model files.
-* `Evaluations`_: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator
-function ``evaluator.py`` that utilizes the mentioned metrics, and a unit test file ``test.py`` for checking the performance of
-each metric with different input types.
+* `Data`_: Contains all sorts of data-driven files and functions. Each dataset contains different files with ``.txt`` extensions, including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items such as social and geographical data are stored in folders with the same name as each dataset.
+
+* `Models`_: Contains the models used in the framework and some common functions in the ``utils.py`` file to avoid code repetition and improve re-usability of model files.
+
+* `Evaluations`_: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator function ``evaluator.py`` that utilizes the mentioned metrics, and a unit test file ``test.py`` for checking the performance of each metric with different input types.
+
 * `Outputs`_: Keeps the final results, including ranked lists and evaluation outputs produced by the framework.
+
+.. _Data: https://github.com/CapriRecSys/CAPRI/tree/main/Data
+.. _Models: https://github.com/CapriRecSys/CAPRI/tree/main/Models
+.. _Evaluations: https://github.com/CapriRecSys/CAPRI/tree/main/Evaluations
+.. _Outputs: https://github.com/CapriRecSys/CAPRI/tree/main/Outputs

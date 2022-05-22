@@ -60,23 +60,18 @@ various datasets for benchmarking purposes. Other features of <code class="docut
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Librec-auto uses an XML-based configuration system similar to Maven or Ant.</p>
 </section>
-<section id="file-structure">
-<h2>File Structure<a class="headerlink" href="#file-structure" title="Permalink to this headline">¶</a></h2>
+<section id="repo-structure">
+<h2>Repo Structure<a class="headerlink" href="#repo-structure" title="Permalink to this headline">¶</a></h2>
 <p>Regarding the implementation, the files of the frameworks are organized in multiple directories for easier
 accessibility and extensibility purposes.
 As a general naming structure and to combine words into a single string in CAPRI, we use PascalCase and camelCase
 for folder and file names, respectively. Below, the main directories of the framework containing files are presented in brief:</p>
 <ul class="simple">
-<li><p><a href="#id1"><span class="problematic" id="id2">`Data`_</span></a>: Contains all sorts of data-driven files and functions. Each dataset contains different files with <code class="docutils literal notranslate"><span class="pre">.txt</span></code> extensions,</p></li>
+<li><p><a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Data">Data</a>: Contains all sorts of data-driven files and functions. Each dataset contains different files with <code class="docutils literal notranslate"><span class="pre">.txt</span></code> extensions, including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items such as social and geographical data are stored in folders with the same name as each dataset.</p></li>
+<li><p><a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Models">Models</a>: Contains the models used in the framework and some common functions in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to avoid code repetition and improve re-usability of model files.</p></li>
+<li><p><a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Evaluations">Evaluations</a>: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator function <code class="docutils literal notranslate"><span class="pre">evaluator.py</span></code> that utilizes the mentioned metrics, and a unit test file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> for checking the performance of each metric with different input types.</p></li>
+<li><p><a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Outputs">Outputs</a>: Keeps the final results, including ranked lists and evaluation outputs produced by the framework.</p></li>
 </ul>
-<p>including train, test, and tune data. Moreover, other files containing the check-ins data and relations among users/items
-such as social and geographical data are stored in folders with the same name as each dataset.
-* <a href="#id3"><span class="problematic" id="id4">`Models`_</span></a>: Contains the models used in the framework and some common functions in the <code class="docutils literal notranslate"><span class="pre">utils.py</span></code> file to avoid code
-repetition and improve re-usability of model files.
-* <a href="#id5"><span class="problematic" id="id6">`Evaluations`_</span></a>: Contains all evaluation metrics available to analyse the performance of models on datasets, the evaluator
-function <code class="docutils literal notranslate"><span class="pre">evaluator.py</span></code> that utilizes the mentioned metrics, and a unit test file <code class="docutils literal notranslate"><span class="pre">test.py</span></code> for checking the performance of
-each metric with different input types.
-* <a href="#id7"><span class="problematic" id="id8">`Outputs`_</span></a>: Keeps the final results, including ranked lists and evaluation outputs produced by the framework.</p>
 </section>
 <section id="welcome-to-capri-s-documentation">
 <h2>Welcome to CAPRI’s documentation!<a class="headerlink" href="#welcome-to-capri-s-documentation" title="Permalink to this headline">¶</a></h2>
