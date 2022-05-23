@@ -1,6 +1,6 @@
-============
+=============================
 CAPRI, A POI RecSys Framework
-============
+=============================
 
 
 .. .. image:: https://coveralls.io/repos/github/that-recsys-lab/librec-auto/badge.svg?branch=master

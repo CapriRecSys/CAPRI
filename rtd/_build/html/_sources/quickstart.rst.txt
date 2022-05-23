@@ -10,6 +10,7 @@ You can easily clone the GitHub repository of ``CAPRI`` as below:
 ::
 	$ git clone https://github.com/CapriRecSys/CAPRI.git
 
+
 Then, install ``CAPRI`` 's required libraries using the command below:
 
 ::
