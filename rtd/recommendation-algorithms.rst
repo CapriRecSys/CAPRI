@@ -1,13 +1,13 @@
 .. _python-side
 ======================
-Evaluation Metrics
+Recommendation Algorithms
 ======================
 
 
-``CAPRI`` supports the following evaluation metrics.
+``CAPRI`` supports the following evaluation recommendation algorithms.
 
 
-Accuracy Metrics
+Traditional Recommendation Algorithms
 --------------------
 
 Argument parsing
@@ -58,7 +58,7 @@ and are accessible via the ``args['param-name']`` syntax.
         )
 
 
-Beyond-accuracy Metrics
+Context-aware POI Recommendation Algorithms
 --------------------------------------
 
 For metrics that are based solely upon an item's expected and actual results
