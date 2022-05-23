@@ -12,6 +12,7 @@ Welcome to CAPRI's documentation!
    :caption: Contents:
    
    quickstart
+   evaluation-metrics
 
 
 
