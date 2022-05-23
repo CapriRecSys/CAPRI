@@ -5,16 +5,14 @@
 
 .. include:: ../README.rst
 
-Welcome to CAPRI's documentation!
-=================================
+Contents
+==============
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
    
    quickstart
    evaluation-metrics
    recommendation-algorithms
-
 
 
 Indices and tables

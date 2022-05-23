@@ -1,14 +1,14 @@
 .. _python-side
-======================
+=========================
 Recommendation Algorithms
-======================
+=========================
 
 
 ``CAPRI`` supports the following evaluation recommendation algorithms.
 
 
 Traditional Recommendation Algorithms
---------------------
+-------------------------------------
 
 Argument parsing
 ~~~~~~~~~~~~~~~~
@@ -59,7 +59,7 @@ and are accessible via the ``args['param-name']`` syntax.
 
 
 Context-aware POI Recommendation Algorithms
---------------------------------------
+-------------------------------------------
 
 For metrics that are based solely upon an item's expected and actual results
 (and not the entire lists' results), ``librec-auto`` provides the ``RowBasedMetric``
@@ -199,7 +199,7 @@ Below is the complete file for an implementation of RMSE.
 
 
 Fairness Metrics
----------------------------------------
+----------------
 
 For metrics that require the entire result list for computation, ``librec-auto``
 provides the ``ListBasedMetric`` superclass, which can be inherited by custom class
