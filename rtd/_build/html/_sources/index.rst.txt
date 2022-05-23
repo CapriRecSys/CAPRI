@@ -13,6 +13,7 @@ Welcome to CAPRI's documentation!
    
    quickstart
    evaluation-metrics
+   recommendation-algorithms
 
 
 
