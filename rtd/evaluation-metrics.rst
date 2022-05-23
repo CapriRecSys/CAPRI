@@ -198,7 +198,7 @@ Below is the complete file for an implementation of RMSE.
         custom.evaluate()
 
 
-Adding a list-based metric (i.e., NDCG)
+Fairness Metrics
 ---------------------------------------
 
 For metrics that require the entire result list for computation, ``librec-auto``
