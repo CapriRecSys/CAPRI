@@ -7,7 +7,7 @@ Evaluation Metrics
 ``CAPRI`` supports the following evaluation metrics.
 
 
-Required boilerplate
+Accuracy Metrics
 --------------------
 
 Argument parsing
@@ -58,7 +58,7 @@ and are accessible via the ``args['param-name']`` syntax.
         )
 
 
-Adding a row-based metric (i.e., RMSE)
+Beyond-accuracy Metrics
 --------------------------------------
 
 For metrics that are based solely upon an item's expected and actual results

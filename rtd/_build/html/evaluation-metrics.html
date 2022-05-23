@@ -35,8 +35,8 @@
   <section id="evaluation-metrics">
 <h1>Evaluation Metrics<a class="headerlink" href="#evaluation-metrics" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> supports the following evaluation metrics.</p>
-<section id="required-boilerplate">
-<h2>Required boilerplate<a class="headerlink" href="#required-boilerplate" title="Permalink to this headline">¶</a></h2>
+<section id="accuracy-metrics">
+<h2>Accuracy Metrics<a class="headerlink" href="#accuracy-metrics" title="Permalink to this headline">¶</a></h2>
 <section id="argument-parsing">
 <h3>Argument parsing<a class="headerlink" href="#argument-parsing" title="Permalink to this headline">¶</a></h3>
 <p>Regardless of the type of metric you’re implementing, you will need some boilerplate code.</p>
@@ -79,8 +79,8 @@ and are accessible via the <code class="docutils literal notranslate"><span clas
 </div>
 </section>
 </section>
-<section id="adding-a-row-based-metric-i-e-rmse">
-<h2>Adding a row-based metric (i.e., RMSE)<a class="headerlink" href="#adding-a-row-based-metric-i-e-rmse" title="Permalink to this headline">¶</a></h2>
+<section id="beyond-accuracy-metrics">
+<h2>Beyond-accuracy Metrics<a class="headerlink" href="#beyond-accuracy-metrics" title="Permalink to this headline">¶</a></h2>
 <p>For metrics that are based solely upon an item’s expected and actual results
 (and not the entire lists’ results), <code class="docutils literal notranslate"><span class="pre">librec-auto</span></code> provides the <code class="docutils literal notranslate"><span class="pre">RowBasedMetric</span></code>
 superclass.</p>
@@ -204,14 +204,14 @@ a single value that represents the final value of the metric.</p>
 <p>For metrics that require the entire result list for computation, <code class="docutils literal notranslate"><span class="pre">librec-auto</span></code>
 provides the <code class="docutils literal notranslate"><span class="pre">ListBasedMetric</span></code> superclass, which can be inherited by custom class
 metrics.</p>
-<section id="id1">
-<h3>Required boilerplate<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<section id="required-boilerplate">
+<h3>Required boilerplate<a class="headerlink" href="#required-boilerplate" title="Permalink to this headline">¶</a></h3>
 <p>See above for the argument parsing and main function boilerplate.
 These are both required for both row- and list-based metrics, and are
 identical for either.</p>
 </section>
-<section id="id2">
-<h3>1. Create the new class file<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<section id="id1">
+<h3>1. Create the new class file<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>Make a file in your study directory. Name is something clear. Let’s assume a
 file named <code class="docutils literal notranslate"><span class="pre">custom_ndcg_metric.py</span></code>.</p>
 </section>
@@ -225,8 +225,8 @@ above and then then import and instantiate the <code class="docutils literal not
     <span class="o">...</span>
 </pre></div>
 </div>
-<section id="id3">
-<h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<section id="id2">
+<h4><code class="docutils literal notranslate"><span class="pre">__init__</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Override <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and set <code class="docutils literal notranslate"><span class="pre">self._name</span></code> equal to the name of the metric.
 Do not forget to call <code class="docutils literal notranslate"><span class="pre">super().__init__</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">test_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
@@ -419,8 +419,8 @@ initialize the custom metric class, and to call <code class="docutils literal no
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluation Metrics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#required-boilerplate">Required boilerplate</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#adding-a-row-based-metric-i-e-rmse">Adding a row-based metric (i.e., RMSE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accuracy-metrics">Accuracy Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#beyond-accuracy-metrics">Beyond-accuracy Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-a-list-based-metric-i-e-ndcg">Adding a list-based metric (i.e., NDCG)</a></li>
 </ul>
 </li>
