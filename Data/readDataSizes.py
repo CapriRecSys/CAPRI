@@ -21,7 +21,7 @@ def readDataSizes(datasetName: str, datasetFiles: dict):
     print("Reading the 'dataSize' file to prepare further processing...")
     categoriesCount = 0
     # Loading required data based on the dataset name
-    if (datasetName == 'Gowalla'):
+    if (datasetName == 'Gowalla') or (datasetName == 'Foursquare'):
         usersCount, poisCount = open(datasetFiles['dataSize'], 'r').readlines()[
             0].strip('\n').split()
     elif (datasetName == 'Yelp'):
