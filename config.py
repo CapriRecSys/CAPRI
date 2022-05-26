@@ -21,6 +21,7 @@ models = {
 datasets = {
     "Gowalla": ["Geographical", "Social", "Temporal", "Interaction"],
     "Yelp":  ["Geographical", "Social", "Temporal", "Categorical", "Interaction"],
+    "Foursquare":  ["Geographical", "Social", "Temporal", "Interaction"],
 }
 
 # An array of selected operations
