@@ -35,5 +35,5 @@ It contains 227,428 check-ins in New York city and 573,703 check-ins in Tokyo.
 Each check-in is associated with its time stamp, its GPS coordinates and its semantic meaning (represented by fine-grained venue-categories).
 This dataset is originally used for studying the spatial-temporal regularity of user activity in LBSNs.
 It satisfies "Geographical", "Social", "Temporal", and "Interaction" features.
-Read more at the `Kaggle website <https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset`_
+Read more at the `Kaggle website <https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset>`_
 
