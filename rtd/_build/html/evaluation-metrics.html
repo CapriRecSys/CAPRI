@@ -42,8 +42,7 @@ In this page, we will discuss these two evaluation metrics in detail.</p>
 <h2>Accuracy Metrics<a class="headerlink" href="#accuracy-metrics" title="Permalink to this headline">¶</a></h2>
 <section id="precision-k">
 <h3>Precision&#64;K<a class="headerlink" href="#precision-k" title="Permalink to this headline">¶</a></h3>
-<p>Precision at k is the fraction of relevant recommended items in the top-k set.
-Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
+<p>Precision at k is the fraction of relevant recommended items in the top-k set. Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
 This means that 75% of the suggestions I offer are applicable to the user.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precisionk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">recommended</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>

@@ -14,8 +14,7 @@ Accuracy Metrics
 Precision@K
 ~~~~~~~~~~~~~~~~
 
-Precision at k is the fraction of relevant recommended items in the top-k set.
-Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
+Precision at k is the fraction of relevant recommended items in the top-k set. Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
 This means that 75% of the suggestions I offer are applicable to the user.
 
 ::

@@ -35,7 +35,7 @@ The framework is released under GPL v3 License and can be accessed (download or 
 Configuration
 =============
 
-Librec-auto uses an XML-based configuration system similar to Maven or Ant.
+TBA
 
 Repo Structure
 =================
