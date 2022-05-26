@@ -1,6 +1,5 @@
-.. _python-side
 =========================
-Recommendation Algorithms
+Models
 =========================
 
 
@@ -58,21 +57,30 @@ and are accessible via the ``args['param-name']`` syntax.
         )
 
 
-Context-aware POI Recommendation Algorithms
+Context-aware Models
 -------------------------------------------
 
 For metrics that are based solely upon an item's expected and actual results
 (and not the entire lists' results), ``librec-auto`` provides the ``RowBasedMetric``
 superclass.
 
-1. Create the new class file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GeoSoCA
+~~~~~~~
 
 First, make a file in your study directory. Name the file something clear.
 Let's assume a file named ``custom_rmse_metric.py``
 
-2. Override the ``RowBasedMetric`` methods
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+LORE
+~~~~
+xxxxx
+
+
+USG
+~~~
+
+YYYYYY
+
+
 
 In this ``custom_rmse_metric.py`` file, we'll want to copy the boilerplate from
 above and then create a subclass of ``RowBasedMetric``, like this:
