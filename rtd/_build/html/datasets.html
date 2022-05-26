@@ -35,14 +35,34 @@
             
   <section id="datasets">
 <h1>Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h1>
+<p>For now, <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> supports three well-know datasets Point-of-Interest (POI) recommendation datasets, listed as below.
+These datasets can be utilized for a wide range of tasks in the POI domain, inluding location-based recommendation, users activity recommendation, and user group recommendation.
+All of the datasets are available in the <code class="docutils literal notranslate"><span class="pre">Data</span></code> directory of the <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> package.
+Please note that As the framework is still in development, we are working on adding more datasets.</p>
 <section id="gowalla">
 <h2>Gowalla<a class="headerlink" href="#gowalla" title="Permalink to this headline">¶</a></h2>
+<p>Gowalla is a location-based social networking website where users share their locations by checking-in.
+The friendship network is undirected and was collected using their public API, and consists of 196,591 nodes and 950,327 edges.
+We have collected a total of 6,442,890 check-ins of these users over the period of Feb. 2009 - Oct. 2010.
+Gowalla contains “Geographical”, “Social”, “Temporal”, and “Interaction” features.
+Read more at the <a class="reference external" href="https://snap.stanford.edu/data/loc-gowalla.html">Stanford University website</a></p>
 </section>
 <section id="yelp">
 <h2>Yelp<a class="headerlink" href="#yelp" title="Permalink to this headline">¶</a></h2>
+<p>The Yelp dataset is a subset of our companies, reviews, and user data that can be used for personal, scholarly, and educational reasons.
+In the most recent dataset you’ll find information about businesses across 8 metropolitan areas in the USA and Canada.
+It satisfies “Geographical”, “Social”, “Temporal”, “Categorical”, and “Interaction” features.
+Read more at the <a class="reference external" href="https://www.yelp.com/dataset">Yelp website</a></p>
 </section>
 <section id="foursquare">
 <h2>Foursquare<a class="headerlink" href="#foursquare" title="Permalink to this headline">¶</a></h2>
+<p>This dataset contains check-ins in NYC and Tokyo collected for about 10 month (from 12 April 2012 to 16 February 2013).
+It contains 227,428 check-ins in New York city and 573,703 check-ins in Tokyo.
+Each check-in is associated with its time stamp, its GPS coordinates and its semantic meaning (represented by fine-grained venue-categories).
+This dataset is originally used for studying the spatial-temporal regularity of user activity in LBSNs.
+It satisfies “Geographical”, “Social”, “Temporal”, and “Interaction” features.
+Read more at the <a href="#id1"><span class="problematic" id="id2">`Kaggle website &lt;https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset`_</span></a></p>
+<p>“””</p>
 </section>
 </section>
 
@@ -122,7 +142,7 @@
       &copy;2022, Ali Tourani, Hossein A. Rahmani, Mohammadmehdi Naghiaei, Yashar Deldjoo.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
