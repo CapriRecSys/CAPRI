@@ -4,363 +4,408 @@ Evaluation Metrics
 ======================
 
 
-Many evaluation metrics are available for recommendation systems and each has its own pros and cons.
-``CAPRI`` supports the two types of evaluation metrics: **Accuracy** and **Beyond Accuracy**.
-In this page, we will discuss these two evaluation metrics in detail.
+``CAPRI`` supports the following evaluation metrics.
 
 
 Accuracy Metrics
 --------------------
 
-Precision@K
+Argument parsing
 ~~~~~~~~~~~~~~~~
 
-Precision at k is the fraction of relevant recommended items in the top-k set.
-Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
-This means that 75% of the suggestions I offer are applicable to the user.
+Regardless of the type of metric you're implementing, you will need some boilerplate code.
+
+A ``read_args`` method to handle input to the custom metric.
 
 ::
 
-def precisionk(actual: list, recommended: list):
-    """
-    Computes the number of relevant results among the top k recommended items
-
-    Parameters
-    ----------
-    actual: list
-        A list of ground truth items
-        example: [X, Y, Z]
-    recommended: list
-        A list of ground truth items (all possible relevant items)
-        example: [x, y, z]
-
-    Returns
-    ----------
-        precision at k
-    """
-    relevantResults = set(actual) & set(recommended)
-    assert 0 <= len(
-        relevantResults), f"The number of relevant results is not true (currently: {len(relevantResults)})"
-    return 1.0 * len(relevantResults) / len(recommended)
+    def read_args():
+        """
+        Parse command line arguments.
+        """
+        parser = argparse.ArgumentParser(description='My custom metric')
+        parser.add_argument('--test', help='Path to test.')
+        parser.add_argument('--result', help='Path to results.')
+        parser.add_argument('--output-file', help='The output pickle file.')
+    
+        # Custom params defined in the config go here
+        parser.add_argument('--foo', help='The weight for re-ranking.')
+    
+        input_args = parser.parse_args()
+        return vars(input_args)
 
 
-Recall@K
-~~~~~~~~~~~~~~~~
+Main function
+~~~~~~~~~~~~~
 
-The proportion of relevant things discovered in the top-k suggestions is known as recall at k.
-Assume we computed recall at 10 and discovered it to be 55% in our top-10 recommendation system.
-This suggests that the top-k results contain 55% of the entire number of relevant items.
+You will also need to start the main function with the following lines.
+Params specified in the ``config.xml`` are passed to the custom metric files
+and are accessible via the ``args['param-name']`` syntax.
 
 ::
 
-def recallk(actual: list, recommended: list):
-    """
-    The number of relevant results among the top k recommended items divided by the total number of relevant items
-
-    Parameters
-    ----------
-    actual: list
-        A list of ground truth items (all possible relevant items)
-        example: [X, Y, Z]
-    recommended: list
-        A list of items recommended by the system
-        example: [x, y, z]
-
-    Returns
-    ----------
-        recall at k
-    """
-    relevantResults = set(actual) & set(recommended)
-    assert 0 <= len(
-        relevantResults), f"The number of relevant results is not true (currently: {len(relevantResults)})"
-    return 1.0 * len(relevantResults) / len(actual)
-
-
-Map@K
-~~~~~~~~~~~~~~~~
-
-MAP@k stands for Mean Average Precision at Cut Off k and is most commonly employed in recommendation systems, 
-although it can also be utilized in other systems.
-When you use MAP to evaluate a recommender algorithm, you're treating the recommendation as a ranking problem.
-
-::
-
-def mapk(actual: list, predicted: list, k: int = 10):
-    """
-    Computes mean Average Precision at k (mAPk) for a set of recommended items
-
-    Parameters
-    ----------
-    actual: list
-        A list of ground truth items (order doesn't matter)
-        example: [X, Y, Z]
-    predicted: list
-        A list of predicted items, recommended by the system (order matters)
-        example: [x, y, z]
-    k: integer, optional (default to 10)
-        The number of elements of predicted to consider in the calculation
-
-    Returns
-    ----------
-    score:
-        The mean Average Precision at k (mAPk)
-    """
-    score = 0.0
-    numberOfHits = 0.0
-    for i, p in enumerate(predicted):
-        if p in actual and p not in predicted[:i]:
-            numberOfHits += 1.0
-            score += numberOfHits / (i+1.0)
-    if not actual:
-        return 0.0
-    score = score / min(len(actual), k)
-    return score
-
-
-NDCG@K
-~~~~~~~~~~~~~~~~
-
-The Discounted Cumulative Gain for k displayed recommendations sums up the importance of the items displayed for 
-the current user (cumulative), while penalizing relevant items in later slots (discounted).
-In the Normalized Cumulative Gain for k given suggestions, this score is divided by the maximum possible value of DCG@K for the current user.
-
-::
-
-def dcg(scores: list):
-    """
-    Computes the Discounted Cumulative Gain (DCG) for a list of scores
-
-    Parameters
-    ----------
-    scores: list
-        A list of scores
-
-    Returns
-    ----------
-    dcg: float
-        The Discounted Cumulative Gain (DCG)
-    """
-    return np.sum(np.divide(np.power(2, scores) - 1, np.log(np.arange(scores.shape[0], dtype=np.float32) + 2)),
-                  dtype=np.float32)
-
-
-def ndcgk(actual: list, predicted: list, relevance=None, at=None):
-    """
-    Calculates the implicit version of Normalized Discounted Cumulative Gain (NDCG) for top k items in the ranked output
-
-    Parameters
-    ----------
-    actual: list
-        A list of ground truth items
-        example: [X, Y, Z]
-    predicted: list
-        A list of predicted items, recommended by the system
-        example: [x, y, z]
-    relevance: list, optional (default to None)
-        A list of relevance scores for the items in the ground truth
-    at: any, optional (default to None)
-        The number of items to consider in the calculation
-
-    Returns
-    ----------
-    ndcg:
-        Normalized DCG score
-
-    Metric Defintion
-    ----------
-    Jarvelin, K., & Kekalainen, J. (2002). Cumulated gain-based evaluation of IR techniques.
-    ACM Transactions on Information Systems (TOIS), 20(4), 422-446.
-    """
-    # Convert list to numpy array
-    actual, predicted = np.asarray(list(actual)), np.asarray(list(predicted))
-    # Check the relevance value
-    if relevance is None:
-        relevance = np.ones_like(actual)
-    assert len(relevance) == actual.shape[0]
-    # Creating a dictionary associating itemId to its relevance
-    item2rel = {it: r for it, r in zip(actual, relevance)}
-    # Creates array of length "at" with the relevance associated to the item in that position
-    rankScores = np.asarray([item2rel.get(it, 0.0)
-                            for it in predicted[:at]], dtype=np.float32)
-    # IDCG has all relevances to 1, up to the number of items in the test set
-    idcg = dcg(np.sort(relevance)[::-1])
-    # Calculating rank-DCG, DCG uses the relevance of the recommended items
-    rdcg = dcg(rankScores)
-    if rdcg == 0.0:
-        return 0.0
-    # Return items
-    return round(rdcg / idcg, 4)
+    if __name__ == '__main__':
+        args = read_args()
+    
+        params = {'foo': args['foo']}
+    
+        test_data = ListBasedMetric.read_data_from_file(
+            args['test']
+        )
+        result_data = ListBasedMetric.read_data_from_file(
+            args['result'],
+            delimiter=','
+        )
 
 
 Beyond-accuracy Metrics
 --------------------------------------
 
-Beyound accuracy metrics refer to evaluating recommender systems by coverage and serendipity.
+For metrics that are based solely upon an item's expected and actual results
+(and not the entire lists' results), ``librec-auto`` provides the ``RowBasedMetric``
+superclass.
 
+1. Create the new class file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-List Diversity
-~~~~~~~~~~~~~~~~
+First, make a file in your study directory. Name the file something clear.
+Let's assume a file named ``custom_rmse_metric.py``
 
-List Diversity is one of the most common metrics used to evaluate recommender systems.
+2. Override the ``RowBasedMetric`` methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
-
-def listDiversity(predicted: list, itemsSimilarityMatrix):
-    """
-    Computes the diversity for a list of recommended items for a user
-
-    Parameters
-    ----------
-    predicted: list
-        A list of predicted numeric/character vectors of retrieved documents for the corresponding element of actual
-        example: ['X', 'Y', 'Z']
-
-    Returns
-    ----------
-        diversity
-    """
-    pairCount = 0
-    similarity = 0
-    pairs = itertools.combinations(predicted, 2)
-    for pair in pairs:
-        itemID1 = pair[0]
-        itemID2 = pair[1]
-        similarity += itemsSimilarityMatrix[itemID1, itemID2]
-        pairCount += 1
-    averageSimilarity = similarity / pairCount
-    diversity = 1 - averageSimilarity
-    return diversity
-
-Novelty
-~~~~~~~~~~~~~~~~
-
-Novelty is one of the most common metrics used to evaluate recommender systems.
+In this ``custom_rmse_metric.py`` file, we'll want to copy the boilerplate from
+above and then create a subclass of ``RowBasedMetric``, like this:
 
 ::
 
-def novelty(predicted: list, pop: dict, u: int, k: int):
-    """
-    Computes the novelty for a list of recommended items for a user
+    from librec_auto.core.eval.metrics.row_based_metric import RowBasedMetric
 
-    Parameters
-    ----------
-    predicted: a list of recommedned items
-        Ordered predictions
-        example: ['X', 'Y', 'Z']
-    pop: dictionary
-        A dictionary of all items alongside of its occurrences counter in the training data
-        example: {1198: 893, 1270: 876, 593: 876, 2762: 867}
-    u: integer
-        The number of users in the training data
-    k: integer
-        The length of recommended lists per user
+    class CustomRmseMetric(RowBasedMetric):
+        ...
 
-    Returns
-    ----------
-    novelty:
-        The novelty of the recommendations in system level
+We'll also want to override the following methods.
 
-    Metric Definition
-    ----------
-    Zhou, T., Kuscsik, Z., Liu, J. G., Medo, M., Wakeling, J. R., & Zhang, Y. C. (2010).
-    Solving the apparent diversity-accuracy dilemma of recommender systems.
-    Proceedings of the National Academy of Sciences, 107(10), 4511-4515.
-    """
-    selfInformation = 0
-    for item in predicted:
-        if item in pop.keys():
-            itemPopularity = pop[item]/u
-            itemNoveltyValue = np.sum(-np.log2(itemPopularity))
-        else:
-            itemNoveltyValue = 0
-        selfInformation += itemNoveltyValue
-    noveltyScore = selfInformation/k
-    return noveltyScore
+``__init__``
+""""""""""""
 
-
-Catalog Coverage
-~~~~~~~~~~~~~~~~
-
-Catalog Coverage is one of the most common metrics used to evaluate recommender systems.
+Override ``__init__`` and set ``self._name`` equal to the name of the metric.
+Do not forget to call ``super().__init__``.
 
 ::
 
-def catalogCoverage(predicted: List[list], catalog: set):
-    """
-    Computes the catalog coverage for k lists of recommendations
-    Coverage is the percent of items in the training data the model is able to recommend on a test set
+    def __init__(self, params: dict, test_data: np.array,
+                 result_data: np.array, output_file) -> None:
+        super().__init__(params, test_data, result_data, output_file)
+        self._name = 'RMSE'
 
-    Parameters
-    ----------
-    predicted: a list of lists
-        Ordered predictions
-        example: [['X', 'Y', 'Z'], ['X', 'Y', 'Z']]
-    catalog: list
-        A list of all unique items in the training data
-        example: ['A', 'B', 'C', 'X', 'Y', 'Z']
-    k: integer
-        The number of observed recommendation lists
-        which randomly choosed in our offline setup
+``evaluate_row``
+""""""""""""""""
 
-    Returns
-    ----------
-    catalogCoverage:
-        The catalog coverage of the recommendations as a percent
-        rounded to 2 decimal places
+This method performs the actual evaluation of the results. The first parameter contains
+the test (expected) values for a given ``item,user`` combination. The second
+parameter contains the actual values for that ``item,user`` combination. Both are numpy
+arrays, and need to be indexed to access the row values. This method should
+return the value of the metric for the given ``user,item`` combination.
 
-    Metric Definition
-    ----------
-    Ge, M., Delgado-Battenfeld, C., & Jannach, D. (2010, September).
-    Beyond accuracy: evaluating recommender systems by coverage and serendipity.
-    In Proceedings of the fourth ACM conference on Recommender systems (pp. 257-260). ACM.
-    """
-    predictedFlattened = [p for sublist in predicted for p in sublist]
-    LPredictions = len(set(predictedFlattened))
-    catalogCoverage = round(LPredictions / (len(catalog) * 1.0) * 100, 2)
-    return catalogCoverage
+Every time that ``evaluate_row`` is executed, the results are saved to a ``_scores``
+list in the metric class, which we'll access in ``post_row_processing``.
 
-Personalization
-~~~~~~~~~~~~~~~~
-
-Personalization is one of the most common metrics used to evaluate recommender systems.
+``evaluate_row`` for RMSE follows:
 
 ::
 
-def personalization(predicted: List[list]):
-    """
-    Personalization measures recommendation similarity across users.
-    A high score indicates good personalization (user's lists of recommendations are different).
-    A low score indicates poor personalization (user's lists of recommendations are very similar).
-    A model is "personalizing" well if the set of recommendations for each user is different.
+	def evaluate_row(self, test: np.array, result: np.array):
+	    test_ranking = test[2]
+	    result_ranking = result[2]
+	    return (test_ranking - result_ranking)**2
 
-    Parameters
-    ----------
-    predicted: a list of lists
-        Ordered predictions
-        example: [['X', 'Y', 'Z'], ['X', 'Y', 'Z']]
 
-    Returns
-    -------
-        The personalization score for all recommendations.
-    """
+``pre_row_processing`` and ``post_row_processing``
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    def makeRecMatrix(predicted: List[list]):
-        df = pd.DataFrame(data=predicted).reset_index().melt(
-            id_vars='index', value_name='item',
+The ``pre_row_processing`` method allows for setting initial values or for other
+processing that should be performed before _any_ of the rows are processed.
+Think of this like setting up the metric.
+
+The ``post_row_processing`` method should manipulate ``self._scores`` and return
+a single value that represents the final value of the metric.
+
+``post_row_processing`` for RMSE follows:
+
+::
+
+    def post_row_processing(self):
+        T = len(self._scores)
+        return (sum(self._scores) / T)**0.5
+
+
+Below is the complete file for an implementation of RMSE.
+
+::
+
+    import argparse
+    import numpy as np
+
+    from librec_auto.core.eval.metrics.row_based_metric import RowBasedMetric
+
+
+    def read_args():
+        """
+        Parse command line arguments.
+        """
+        parser = argparse.ArgumentParser(description='My custom metric')
+        parser.add_argument('--test', help='Path to test.')
+        parser.add_argument('--result', help='Path to results.')
+        parser.add_argument('--output-file', help='The output pickle file.')
+
+        # Custom params defined in the config go here
+        parser.add_argument('--foo', help='The weight for re-ranking.')
+
+        input_args = parser.parse_args()
+        return vars(input_args)
+
+
+    class CustomRmseMetric(RowBasedMetric):
+        def __init__(self, params: dict, test_data: np.array,
+                    result_data: np.array, output_file) -> None:
+            super().__init__(params, test_data, result_data, output_file)
+            self._name = 'RMSE'
+
+        def evaluate_row(self, test: np.array, result: np.array):
+            test_ranking = test[2]
+            result_ranking = result[2]
+            return (test_ranking - result_ranking)**2
+
+		def post_row_processing(self):
+			T = len(self._scores)
+			return (sum(self._scores) / T)**0.5
+
+
+    if __name__ == '__main__':
+        args = read_args()
+
+        params = {'foo': args['foo']}
+
+        test_data = CustomRmseMetric.read_data_from_file(args['test'])
+
+        result_data = CustomRmseMetric.read_data_from_file(args['result'],
+                                                        delimiter=',')
+
+        custom = CustomRmseMetric(params, test_data, result_data,
+                                args['output_file'])
+
+        custom.evaluate()
+
+
+Fairness Metrics
+---------------------------------------
+
+For metrics that require the entire result list for computation, ``librec-auto``
+provides the ``ListBasedMetric`` superclass, which can be inherited by custom class
+metrics.
+
+Required boilerplate
+~~~~~~~~~~~~~~~~~~~~
+
+See above for the argument parsing and main function boilerplate.
+These are both required for both row- and list-based metrics, and are
+identical for either.
+
+1. Create the new class file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Make a file in your study directory. Name is something clear. Let's assume a
+file named ``custom_ndcg_metric.py``.
+
+2. Override the ``ListBasedMetric`` methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the ``custom_ndcg_metric.py`` file, we'll want to copy the boilerplate from
+above and then then import and instantiate the ``ListBasedMetric`` superclass.
+
+::
+
+    from librec_auto.core.eval.metrics.list_based_metric import ListBasedMetric
+
+    class CustomRmseMetric(ListBasedMetric):
+        ...
+
+
+``__init__``
+""""""""""""
+
+Override ``__init__`` and set ``self._name`` equal to the name of the metric.
+Do not forget to call ``super().__init__``.
+
+::
+
+    def __init__(self, params: dict, test_data: np.array,
+                 result_data: np.array, output_file) -> None:
+        super().__init__(params, test_data, result_data, output_file)
+        self._name = 'RMSE'
+
+
+
+``evaluate_user``
+"""""""""""""""""
+
+This method produces a metric value for a given user, based on test and result
+arrays of user data. These arrays contain values for all rows where this user is
+the user.
+
+``evaluate_user`` for NDCG follows:
+
+(Note the ``self._list_size`` is set in ``config.xml``, in ``__init__``, and in
+``__main__``.)
+
+::
+
+    def evaluate_user(self, test_user_data: np.array,
+                      result_user_data: np.array) -> float:
+        rec_num = int(self._list_size)
+
+        idealOrder = test_user_data
+        idealDCG = 0.0
+
+        for j in range(min(rec_num, len(idealOrder))):
+            idealDCG += ((math.pow(2.0,
+                                   len(idealOrder) - j) - 1) /
+                         math.log(2.0 + j))
+
+        recDCG = 0.0
+        test_user_items = list(test_user_data[:, 1])
+
+        for j in range(rec_num):
+            item = int(result_user_data[j][1])
+            if item in test_user_items:
+                rank = len(test_user_items) - test_user_items.index(
+                    item)  # why ground truth?
+                recDCG += ((math.pow(2.0, rank) - 1) / math.log(1.0 + j + 1))
+        return (recDCG / idealDCG)
+
+
+
+``preprocessing`` and ``postprocessing``
+""""""""""""""""""""""""""""""""""""""""
+
+``preprocessing`` should be used to set up initial values for the metric that
+are not passed from ``config.xml``.
+
+Results from every execution of ``evaluate_user`` are saved to ``self._values``,
+which should be accessed in ``postprocessing`` to produce a single final value.
+
+``postprocessing`` for NDCG follows:
+
+::
+
+    def postprocessing(self):
+        return np.average(self._values)
+
+
+``__main__``
+""""""""""""
+
+Use the main function to parse any file arguments to class parameters, to
+initialize the custom metric class, and to call ``.evaluate()``.
+
+
+The main function for NDCG follows:
+
+::
+
+	if __name__ == '__main__':
+		args = read_args()
+
+		params = {'list_size': args['list_size']}
+
+		test_data = ListBasedMetric.read_data_from_file(
+			args['test']
+		)
+		result_data = ListBasedMetric.read_data_from_file(
+			args['result'],
+			delimiter=','
+		)
+
+		custom = CustomNdcgMetric(params, test_data, result_data,
+								args['output_file'])
+
+		custom.evaluate()
+
+Below is the complete file for a custom implementation of NDCG.
+
+::
+
+    import argparse
+    import numpy as np
+    import math
+
+    from librec_auto.core.eval.metrics.list_based_metric import ListBasedMetric
+
+    def read_args():
+        """
+        Parse command line arguments.
+        """
+        parser = argparse.ArgumentParser(description='My custom metric')
+        parser.add_argument('--test', help='Path to test.')
+        parser.add_argument('--result', help='Path to results.')
+        parser.add_argument('--output-file', help='The output pickle file.')
+
+        # Custom params defined in the config go here
+        parser.add_argument('--list-size', help='Size of the list for NDCG.')
+
+        input_args = parser.parse_args()
+        return vars(input_args)
+
+    class CustomNdcgMetric(ListBasedMetric):
+        def __init__(self, params: dict, test_data: np.array,
+                    result_data: np.array, output_file: str) -> None:
+            super().__init__(params, test_data, result_data, output_file)
+            self._name = 'NDCG'
+            self._list_size = params['list_size']
+
+        def evaluate_user(self, test_user_data: np.array,
+                        result_user_data: np.array) -> float:
+            rec_num = int(self._list_size)
+
+            idealOrder = test_user_data
+            idealDCG = 0.0
+
+            for j in range(min(rec_num, len(idealOrder))):
+                idealDCG += ((math.pow(2.0,
+                                    len(idealOrder) - j) - 1) /
+                            math.log(2.0 + j))
+
+            recDCG = 0.0
+            test_user_items = list(test_user_data[:, 1])
+
+            for j in range(rec_num):
+                item = int(result_user_data[j][1])
+                if item in test_user_items:
+                    rank = len(test_user_items) - test_user_items.index(
+                        item)  # why ground truth?
+                    recDCG += ((math.pow(2.0, rank) - 1) / math.log(1.0 + j + 1))
+            return (recDCG / idealDCG)
+
+        def postprocessing(self):
+            return np.average(self._values)
+
+
+    if __name__ == '__main__':
+        args = read_args()
+
+
+        params = {'list_size': args['list_size']}
+
+        test_data = ListBasedMetric.read_data_from_file(
+            args['test']
         )
-        df = df[['index', 'item']].pivot(
-            index='index', columns='item', values='item')
-        df = pd.notna(df)*1
-        recMatrix = sp.csr_matrix(df.values)
-        return recMatrix
+        result_data = ListBasedMetric.read_data_from_file(
+            args['result'],
+            delimiter=','
+        )
 
-    # Create matrix for recommendations
-    predicted = np.array(predicted)
-    recMatrixSparse = makeRecMatrix(predicted)
-    # Calculate similarity for every user's recommendation list
-    similarity = cosine_similarity(X=recMatrixSparse, dense_output=False)
-    # Get indicies for upper right triangle w/o diagonal
-    upperRight = np.triu_indices(similarity.shape[0], k=1)
-    # Calculate average similarity
-    personalization = np.mean(similarity[upperRight])
-    return 1-personalization
+        custom = CustomNdcgMetric(params, test_data, result_data,
+                                args['output_file'])
+
+        custom.evaluate()
+
