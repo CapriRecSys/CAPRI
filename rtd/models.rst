@@ -1,6 +1,6 @@
-=========================
-Recommendation Algorithms
-=========================
+======
+Models
+======
 
 
 ``CAPRI`` supports the following evaluation recommendation algorithms.
