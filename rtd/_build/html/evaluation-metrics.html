@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Recommendation Algorithms" href="recommendation-algorithms.html" />
-    <link rel="prev" title="Quickstart guide" href="quickstart.html" />
+    <link rel="prev" title="Datasets" href="datasets.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -45,100 +45,95 @@ In this page, we will discuss these two evaluation metrics in detail.</p>
 <p>Precision at k is the fraction of relevant recommended items in the top-k set.
 Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
 This means that 75% of the suggestions I offer are applicable to the user.</p>
-<dl>
-<dt>def precisionk(actual: list, recommended: list):</dt><dd><p>“””
-Computes the number of relevant results among the top k recommended items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items
-example: [X, Y, Z]</p>
-</dd>
-<dt>recommended: list</dt><dd><p>A list of ground truth items (all possible relevant items)
-example: [x, y, z]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>precision at k</p>
-</div></blockquote>
-<p>“””
-relevantResults = set(actual) &amp; set(recommended)
-assert 0 &lt;= len(</p>
-<blockquote>
-<div><p>relevantResults), f”The number of relevant results is not true (currently: {len(relevantResults)})”</p>
-</div></blockquote>
-<p>return 1.0 * len(relevantResults) / len(recommended)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precisionk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">recommended</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the number of relevant results among the top k recommended items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    recommended: list</span>
+<span class="sd">        A list of ground truth items (all possible relevant items)</span>
+<span class="sd">        example: [x, y, z]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        precision at k</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relevantResults</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="n">relevantResults</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;The number of relevant results is not true (currently: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="recall-k">
 <h3>Recall&#64;K<a class="headerlink" href="#recall-k" title="Permalink to this headline">¶</a></h3>
 <p>The proportion of relevant things discovered in the top-k suggestions is known as recall at k.
 Assume we computed recall at 10 and discovered it to be 55% in our top-10 recommendation system.
 This suggests that the top-k results contain 55% of the entire number of relevant items.</p>
-<dl>
-<dt>def recallk(actual: list, recommended: list):</dt><dd><p>“””
-The number of relevant results among the top k recommended items divided by the total number of relevant items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items (all possible relevant items)
-example: [X, Y, Z]</p>
-</dd>
-<dt>recommended: list</dt><dd><p>A list of items recommended by the system
-example: [x, y, z]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>recall at k</p>
-</div></blockquote>
-<p>“””
-relevantResults = set(actual) &amp; set(recommended)
-assert 0 &lt;= len(</p>
-<blockquote>
-<div><p>relevantResults), f”The number of relevant results is not true (currently: {len(relevantResults)})”</p>
-</div></blockquote>
-<p>return 1.0 * len(relevantResults) / len(actual)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recallk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">recommended</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The number of relevant results among the top k recommended items divided by the total number of relevant items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items (all possible relevant items)</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    recommended: list</span>
+<span class="sd">        A list of items recommended by the system</span>
+<span class="sd">        example: [x, y, z]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        recall at k</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relevantResults</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;The number of relevant results is not true (currently: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="map-k">
 <h3>Map&#64;K<a class="headerlink" href="#map-k" title="Permalink to this headline">¶</a></h3>
 <p>MAP&#64;k stands for Mean Average Precision at Cut Off k and is most commonly employed in recommendation systems,
 although it can also be utilized in other systems.
 When you use MAP to evaluate a recommender algorithm, you’re treating the recommendation as a ranking problem.</p>
-<dl>
-<dt>def mapk(actual: list, predicted: list, k: int = 10):</dt><dd><p>“””
-Computes mean Average Precision at k (mAPk) for a set of recommended items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items (order doesn’t matter)
-example: [X, Y, Z]</p>
-</dd>
-<dt>predicted: list</dt><dd><p>A list of predicted items, recommended by the system (order matters)
-example: [x, y, z]</p>
-</dd>
-<dt>k: integer, optional (default to 10)</dt><dd><p>The number of elements of predicted to consider in the calculation</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>score:</dt><dd><p>The mean Average Precision at k (mAPk)</p>
-</dd>
-</dl>
-<p>“””
-score = 0.0
-numberOfHits = 0.0
-for i, p in enumerate(predicted):</p>
-<blockquote>
-<div><dl class="simple">
-<dt>if p in actual and p not in predicted[:i]:</dt><dd><p>numberOfHits += 1.0
-score += numberOfHits / (i+1.0)</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>if not actual:</dt><dd><p>return 0.0</p>
-</dd>
-</dl>
-<p>score = score / min(len(actual), k)
-return score</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">predicted</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes mean Average Precision at k (mAPk) for a set of recommended items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items (order doesn&#39;t matter)</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    predicted: list</span>
+<span class="sd">        A list of predicted items, recommended by the system (order matters)</span>
+<span class="sd">        example: [x, y, z]</span>
+<span class="sd">    k: integer, optional (default to 10)</span>
+<span class="sd">        The number of elements of predicted to consider in the calculation</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    score:</span>
+<span class="sd">        The mean Average Precision at k (mAPk)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">numberOfHits</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predicted</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">actual</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">[:</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">numberOfHits</span> <span class="o">+=</span> <span class="mf">1.0</span>
+            <span class="n">score</span> <span class="o">+=</span> <span class="n">numberOfHits</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">actual</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">/</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">score</span>
+</pre></div>
+</div>
 </section>
 <section id="ndcg-k">
 <h3>NDCG&#64;K<a class="headerlink" href="#ndcg-k" title="Permalink to this headline">¶</a></h3>
@@ -157,10 +152,7 @@ Computes the Discounted Cumulative Gain (DCG) for a list of scores</p>
 </dd>
 </dl>
 <p>“””
-return np.sum(np.divide(np.power(2, scores) - 1, np.log(np.arange(scores.shape[0], dtype=np.float32) + 2)),</p>
-<blockquote>
-<div><p>dtype=np.float32)</p>
-</div></blockquote>
+return np.sum(np.divide(np.power(2, scores) - 1, np.log(np.arange(scores.shape[0], dtype=np.float32) + 2)), dtype=np.float32)</p>
 </dd>
 <dt>def ndcgk(actual: list, predicted: list, relevance=None, at=None):</dt><dd><p>“””
 Calculates the implicit version of Normalized Discounted Cumulative Gain (NDCG) for top k items in the ranked output</p>
@@ -403,6 +395,7 @@ return 1-personalization</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Evaluation Metrics</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#accuracy-metrics">Accuracy Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#beyond-accuracy-metrics">Beyond-accuracy Metrics</a></li>
@@ -415,7 +408,7 @@ return 1-personalization</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart guide</a></li>
+      <li>Previous: <a href="datasets.html" title="previous chapter">Datasets</a></li>
       <li>Next: <a href="recommendation-algorithms.html" title="next chapter">Recommendation Algorithms</a></li>
   </ul></li>
 </ul>

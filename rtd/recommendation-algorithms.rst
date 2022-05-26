@@ -1,4 +1,3 @@
-.. _python-side
 =========================
 Recommendation Algorithms
 =========================
