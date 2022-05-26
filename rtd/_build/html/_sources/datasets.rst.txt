@@ -37,4 +37,3 @@ This dataset is originally used for studying the spatial-temporal regularity of 
 It satisfies "Geographical", "Social", "Temporal", and "Interaction" features.
 Read more at the `Kaggle website <https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset`_
 
-"""

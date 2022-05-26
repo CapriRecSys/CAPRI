@@ -34,17 +34,44 @@
             
   <section id="models">
 <h1>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> supports the following evaluation recommendation algorithms.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> contains various models for analysis of the data in Point-of-Interest (POI) datasets.
+All of the models are available in the <a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Models">Models</a> directory of the <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> package.
+Please note that As the framework is still in development, we are working on adding more models.</p>
 <section id="baselines">
 <h2>Baselines<a class="headerlink" href="#baselines" title="Permalink to this headline">¶</a></h2>
+<p>TBD</p>
 </section>
 <section id="context-aware-poi-recommendation">
 <h2>Context-aware POI Recommendation<a class="headerlink" href="#context-aware-poi-recommendation" title="Permalink to this headline">¶</a></h2>
+<p>Context Aware Recommendation Systems incorporate a variety of contextual factors in order to accurately capture user preferences.</p>
 <section id="geosoca">
 <h3>GeoSoCa<a class="headerlink" href="#geosoca" title="Permalink to this headline">¶</a></h3>
+<p>GoeSoCa is a novel POI recommendation method that uses geographical, social, and category correlations between users and POIs to make recommendations.
+These correlations can be learned from user check-in data on POIs in the past and used to predict a user’s relevance score to an unvisited POI in order to offer suggestions to them.
+Read more at <a class="reference external" href="https://dl.acm.org/doi/10.1145/2766462.2767711">GeoSoCa’s paper</a>
+You can also check the content of <a class="reference internal" href="#geosoca">GeoSoCa</a> model in <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> package.
+.. _GeoSoCa: <a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Models/GeoSoCa">https://github.com/CapriRecSys/CAPRI/tree/main/Models/GeoSoCa</a></p>
 </section>
 <section id="lore">
 <h3>LORE<a class="headerlink" href="#lore" title="Permalink to this headline">¶</a></h3>
+<p>LORE is another model utilized in the context of context-aware POI recommendation systems.
+It is a popular and robust model for location recommendation focused on the impacts of geographical and social influence on users’ check-in behaviors.
+LORE incrementally mines sequential patterns from location sequences and represents the sequential patterns as a dynamic Location-Location Transition Graph (L2TG).
+It also predicts the probability of a user visiting a location by Additive Markov Chain (AMC) with L2TG.
+Finally, it fuses sequential influence with geographical influence and social influence into a unified recommendation framework.
+Read more at <a class="reference external" href="https://dl.acm.org/doi/10.1145/2666310.2666400">LORE’s paper</a>
+You can also check the content of <a class="reference internal" href="#lore">LORE</a> model in <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> package.
+.. _LORE: <a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Models/LORE">https://github.com/CapriRecSys/CAPRI/tree/main/Models/LORE</a></p>
+</section>
+<section id="usg">
+<h3>USG<a class="headerlink" href="#usg" title="Permalink to this headline">¶</a></h3>
+<p>USG is a well-known model in the POI recommedner community.
+Due to the spatial clustering phenomenon demonstrated in LBSN user check-in activities, USG places a specific emphasis on geographical impact in addition to deriving user preference based on researching social influence from peers.
+Accordingly, geographical influence among POIs has a significant impact on user check-in behaviors, which is modedl in USG using a power law distribution.
+This model creates a naïve Bayesian-based collaborative recommendation system based on geographical influence.
+Read more at <a class="reference external" href="https://dl.acm.org/doi/10.1145/2009916.2009962">USG’s paper</a>
+You can also check the content of <a class="reference internal" href="#usg">USG</a> model in <code class="docutils literal notranslate"><span class="pre">CAPRI</span></code> package.
+.. _USG: <a class="reference external" href="https://github.com/CapriRecSys/CAPRI/tree/main/Models/USG">https://github.com/CapriRecSys/CAPRI/tree/main/Models/USG</a></p>
 </section>
 </section>
 </section>
