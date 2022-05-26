@@ -4,8 +4,10 @@ Datasets
 
 For now, ``CAPRI`` supports three well-know datasets Point-of-Interest (POI) recommendation datasets, listed as below.
 These datasets can be utilized for a wide range of tasks in the POI domain, inluding location-based recommendation, users activity recommendation, and user group recommendation.
-All of the datasets are available in the ``Data`` directory of the ``CAPRI`` package.
+All of the datasets are available in the `Data`_ directory of the ``CAPRI`` package.
 Please note that As the framework is still in development, we are working on adding more datasets.
+
+.. _Data: https://github.com/CapriRecSys/CAPRI/tree/main/Data
 
 Gowalla
 -------
