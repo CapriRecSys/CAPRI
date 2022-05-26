@@ -42,174 +42,168 @@ In this page, we will discuss these two evaluation metrics in detail.</p>
 <h2>Accuracy Metrics<a class="headerlink" href="#accuracy-metrics" title="Permalink to this headline">¶</a></h2>
 <section id="precision-k">
 <h3>Precision&#64;K<a class="headerlink" href="#precision-k" title="Permalink to this headline">¶</a></h3>
-<p>Precision at k is the fraction of relevant recommended items in the top-k set.
-Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
+<p>Precision at k is the fraction of relevant recommended items in the top-k set. Assume that in a top-10 recommendation problem, my precision at 10 is 75%.
 This means that 75% of the suggestions I offer are applicable to the user.</p>
-<dl>
-<dt>def precisionk(actual: list, recommended: list):</dt><dd><p>“””
-Computes the number of relevant results among the top k recommended items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items
-example: [X, Y, Z]</p>
-</dd>
-<dt>recommended: list</dt><dd><p>A list of ground truth items (all possible relevant items)
-example: [x, y, z]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>precision at k</p>
-</div></blockquote>
-<p>“””
-relevantResults = set(actual) &amp; set(recommended)
-assert 0 &lt;= len(</p>
-<blockquote>
-<div><p>relevantResults), f”The number of relevant results is not true (currently: {len(relevantResults)})”</p>
-</div></blockquote>
-<p>return 1.0 * len(relevantResults) / len(recommended)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">precisionk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">recommended</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the number of relevant results among the top k recommended items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    recommended: list</span>
+<span class="sd">        A list of ground truth items (all possible relevant items)</span>
+<span class="sd">        example: [x, y, z]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        precision at k</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relevantResults</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span>
+        <span class="n">relevantResults</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;The number of relevant results is not true (currently: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="recall-k">
 <h3>Recall&#64;K<a class="headerlink" href="#recall-k" title="Permalink to this headline">¶</a></h3>
 <p>The proportion of relevant things discovered in the top-k suggestions is known as recall at k.
 Assume we computed recall at 10 and discovered it to be 55% in our top-10 recommendation system.
 This suggests that the top-k results contain 55% of the entire number of relevant items.</p>
-<dl>
-<dt>def recallk(actual: list, recommended: list):</dt><dd><p>“””
-The number of relevant results among the top k recommended items divided by the total number of relevant items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items (all possible relevant items)
-example: [X, Y, Z]</p>
-</dd>
-<dt>recommended: list</dt><dd><p>A list of items recommended by the system
-example: [x, y, z]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>recall at k</p>
-</div></blockquote>
-<p>“””
-relevantResults = set(actual) &amp; set(recommended)
-assert 0 &lt;= len(</p>
-<blockquote>
-<div><p>relevantResults), f”The number of relevant results is not true (currently: {len(relevantResults)})”</p>
-</div></blockquote>
-<p>return 1.0 * len(relevantResults) / len(actual)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">recallk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">recommended</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The number of relevant results among the top k recommended items divided by the total number of relevant items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items (all possible relevant items)</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    recommended: list</span>
+<span class="sd">        A list of items recommended by the system</span>
+<span class="sd">        example: [x, y, z]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        recall at k</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">relevantResults</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">recommended</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;The number of relevant results is not true (currently: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevantResults</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 <section id="map-k">
 <h3>Map&#64;K<a class="headerlink" href="#map-k" title="Permalink to this headline">¶</a></h3>
 <p>MAP&#64;k stands for Mean Average Precision at Cut Off k and is most commonly employed in recommendation systems,
 although it can also be utilized in other systems.
 When you use MAP to evaluate a recommender algorithm, you’re treating the recommendation as a ranking problem.</p>
-<dl>
-<dt>def mapk(actual: list, predicted: list, k: int = 10):</dt><dd><p>“””
-Computes mean Average Precision at k (mAPk) for a set of recommended items</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items (order doesn’t matter)
-example: [X, Y, Z]</p>
-</dd>
-<dt>predicted: list</dt><dd><p>A list of predicted items, recommended by the system (order matters)
-example: [x, y, z]</p>
-</dd>
-<dt>k: integer, optional (default to 10)</dt><dd><p>The number of elements of predicted to consider in the calculation</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>score:</dt><dd><p>The mean Average Precision at k (mAPk)</p>
-</dd>
-</dl>
-<p>“””
-score = 0.0
-numberOfHits = 0.0
-for i, p in enumerate(predicted):</p>
-<blockquote>
-<div><dl class="simple">
-<dt>if p in actual and p not in predicted[:i]:</dt><dd><p>numberOfHits += 1.0
-score += numberOfHits / (i+1.0)</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>if not actual:</dt><dd><p>return 0.0</p>
-</dd>
-</dl>
-<p>score = score / min(len(actual), k)
-return score</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mapk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">predicted</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes mean Average Precision at k (mAPk) for a set of recommended items</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items (order doesn&#39;t matter)</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    predicted: list</span>
+<span class="sd">        A list of predicted items, recommended by the system (order matters)</span>
+<span class="sd">        example: [x, y, z]</span>
+<span class="sd">    k: integer, optional (default to 10)</span>
+<span class="sd">        The number of elements of predicted to consider in the calculation</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    score:</span>
+<span class="sd">        The mean Average Precision at k (mAPk)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">numberOfHits</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">predicted</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">actual</span> <span class="ow">and</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">[:</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">numberOfHits</span> <span class="o">+=</span> <span class="mf">1.0</span>
+            <span class="n">score</span> <span class="o">+=</span> <span class="n">numberOfHits</span> <span class="o">/</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">actual</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">/</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">actual</span><span class="p">),</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">score</span>
+</pre></div>
+</div>
 </section>
 <section id="ndcg-k">
 <h3>NDCG&#64;K<a class="headerlink" href="#ndcg-k" title="Permalink to this headline">¶</a></h3>
 <p>The Discounted Cumulative Gain for k displayed recommendations sums up the importance of the items displayed for
 the current user (cumulative), while penalizing relevant items in later slots (discounted).
 In the Normalized Cumulative Gain for k given suggestions, this score is divided by the maximum possible value of DCG&#64;K for the current user.</p>
-<dl>
-<dt>def dcg(scores: list):</dt><dd><p>“””
-Computes the Discounted Cumulative Gain (DCG) for a list of scores</p>
-<dl class="simple">
-<dt>scores: list</dt><dd><p>A list of scores</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>dcg: float</dt><dd><p>The Discounted Cumulative Gain (DCG)</p>
-</dd>
-</dl>
-<p>“””
-return np.sum(np.divide(np.power(2, scores) - 1, np.log(np.arange(scores.shape[0], dtype=np.float32) + 2)),</p>
-<blockquote>
-<div><p>dtype=np.float32)</p>
-</div></blockquote>
-</dd>
-<dt>def ndcgk(actual: list, predicted: list, relevance=None, at=None):</dt><dd><p>“””
-Calculates the implicit version of Normalized Discounted Cumulative Gain (NDCG) for top k items in the ranked output</p>
-<dl class="simple">
-<dt>actual: list</dt><dd><p>A list of ground truth items
-example: [X, Y, Z]</p>
-</dd>
-<dt>predicted: list</dt><dd><p>A list of predicted items, recommended by the system
-example: [x, y, z]</p>
-</dd>
-<dt>relevance: list, optional (default to None)</dt><dd><p>A list of relevance scores for the items in the ground truth</p>
-</dd>
-<dt>at: any, optional (default to None)</dt><dd><p>The number of items to consider in the calculation</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>ndcg:</dt><dd><p>Normalized DCG score</p>
-</dd>
-</dl>
-<p>Jarvelin, K., &amp; Kekalainen, J. (2002). Cumulated gain-based evaluation of IR techniques.
-ACM Transactions on Information Systems (TOIS), 20(4), 422-446.
-“””
-# Convert list to numpy array
-actual, predicted = np.asarray(list(actual)), np.asarray(list(predicted))
-# Check the relevance value
-if relevance is None:</p>
-<blockquote>
-<div><p>relevance = np.ones_like(actual)</p>
-</div></blockquote>
-<p>assert len(relevance) == actual.shape[0]
-# Creating a dictionary associating itemId to its relevance
-item2rel = {it: r for it, r in zip(actual, relevance)}
-# Creates array of length “at” with the relevance associated to the item in that position
-rankScores = np.asarray([item2rel.get(it, 0.0)</p>
-<blockquote>
-<div><p>for it in predicted[:at]], dtype=np.float32)</p>
-</div></blockquote>
-<p># IDCG has all relevances to 1, up to the number of items in the test set
-idcg = dcg(np.sort(relevance)[::-1])
-# Calculating rank-DCG, DCG uses the relevance of the recommended items
-rdcg = dcg(rankScores)
-if rdcg == 0.0:</p>
-<blockquote>
-<div><p>return 0.0</p>
-</div></blockquote>
-<p># Return items
-return round(rdcg / idcg, 4)</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dcg</span><span class="p">(</span><span class="n">scores</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the Discounted Cumulative Gain (DCG) for a list of scores</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    scores: list</span>
+<span class="sd">        A list of scores</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dcg: float</span>
+<span class="sd">        The Discounted Cumulative Gain (DCG)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">scores</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">ndcgk</span><span class="p">(</span><span class="n">actual</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">predicted</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">relevance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the implicit version of Normalized Discounted Cumulative Gain (NDCG) for top k items in the ranked output</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    actual: list</span>
+<span class="sd">        A list of ground truth items</span>
+<span class="sd">        example: [X, Y, Z]</span>
+<span class="sd">    predicted: list</span>
+<span class="sd">        A list of predicted items, recommended by the system</span>
+<span class="sd">        example: [x, y, z]</span>
+<span class="sd">    relevance: list, optional (default to None)</span>
+<span class="sd">        A list of relevance scores for the items in the ground truth</span>
+<span class="sd">    at: any, optional (default to None)</span>
+<span class="sd">        The number of items to consider in the calculation</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ndcg:</span>
+<span class="sd">        Normalized DCG score</span>
+
+<span class="sd">    Metric Defintion</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Jarvelin, K., &amp; Kekalainen, J. (2002). Cumulated gain-based evaluation of IR techniques.</span>
+<span class="sd">    ACM Transactions on Information Systems (TOIS), 20(4), 422-446.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert list to numpy array</span>
+    <span class="n">actual</span><span class="p">,</span> <span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">actual</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">predicted</span><span class="p">))</span>
+    <span class="c1"># Check the relevance value</span>
+    <span class="k">if</span> <span class="n">relevance</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">relevance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">actual</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">relevance</span><span class="p">)</span> <span class="o">==</span> <span class="n">actual</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Creating a dictionary associating itemId to its relevance</span>
+    <span class="n">item2rel</span> <span class="o">=</span> <span class="p">{</span><span class="n">it</span><span class="p">:</span> <span class="n">r</span> <span class="k">for</span> <span class="n">it</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">relevance</span><span class="p">)}</span>
+    <span class="c1"># Creates array of length &quot;at&quot; with the relevance associated to the item in that position</span>
+    <span class="n">rankScores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">item2rel</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+                            <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">[:</span><span class="n">at</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="c1"># IDCG has all relevances to 1, up to the number of items in the test set</span>
+    <span class="n">idcg</span> <span class="o">=</span> <span class="n">dcg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">relevance</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1"># Calculating rank-DCG, DCG uses the relevance of the recommended items</span>
+    <span class="n">rdcg</span> <span class="o">=</span> <span class="n">dcg</span><span class="p">(</span><span class="n">rankScores</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rdcg</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="c1"># Return items</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">rdcg</span> <span class="o">/</span> <span class="n">idcg</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="beyond-accuracy-metrics">
@@ -218,156 +212,160 @@ return round(rdcg / idcg, 4)</p>
 <section id="list-diversity">
 <h3>List Diversity<a class="headerlink" href="#list-diversity" title="Permalink to this headline">¶</a></h3>
 <p>List Diversity is one of the most common metrics used to evaluate recommender systems.</p>
-<dl>
-<dt>def listDiversity(predicted: list, itemsSimilarityMatrix):</dt><dd><p>“””
-Computes the diversity for a list of recommended items for a user</p>
-<dl class="simple">
-<dt>predicted: list</dt><dd><p>A list of predicted numeric/character vectors of retrieved documents for the corresponding element of actual
-example: [‘X’, ‘Y’, ‘Z’]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>diversity</p>
-</div></blockquote>
-<p>“””
-pairCount = 0
-similarity = 0
-pairs = itertools.combinations(predicted, 2)
-for pair in pairs:</p>
-<blockquote>
-<div><p>itemID1 = pair[0]
-itemID2 = pair[1]
-similarity += itemsSimilarityMatrix[itemID1, itemID2]
-pairCount += 1</p>
-</div></blockquote>
-<p>averageSimilarity = similarity / pairCount
-diversity = 1 - averageSimilarity
-return diversity</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">listDiversity</span><span class="p">(</span><span class="n">predicted</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">itemsSimilarityMatrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the diversity for a list of recommended items for a user</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    predicted: list</span>
+<span class="sd">        A list of predicted numeric/character vectors of retrieved documents for the corresponding element of actual</span>
+<span class="sd">        example: [&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">        diversity</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pairCount</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">predicted</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="n">itemID1</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">itemID2</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">similarity</span> <span class="o">+=</span> <span class="n">itemsSimilarityMatrix</span><span class="p">[</span><span class="n">itemID1</span><span class="p">,</span> <span class="n">itemID2</span><span class="p">]</span>
+        <span class="n">pairCount</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">averageSimilarity</span> <span class="o">=</span> <span class="n">similarity</span> <span class="o">/</span> <span class="n">pairCount</span>
+    <span class="n">diversity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">averageSimilarity</span>
+    <span class="k">return</span> <span class="n">diversity</span>
+</pre></div>
+</div>
 </section>
 <section id="novelty">
 <h3>Novelty<a class="headerlink" href="#novelty" title="Permalink to this headline">¶</a></h3>
 <p>Novelty is one of the most common metrics used to evaluate recommender systems.</p>
-<dl>
-<dt>def novelty(predicted: list, pop: dict, u: int, k: int):</dt><dd><p>“””
-Computes the novelty for a list of recommended items for a user</p>
-<dl class="simple">
-<dt>predicted: a list of recommedned items</dt><dd><p>Ordered predictions
-example: [‘X’, ‘Y’, ‘Z’]</p>
-</dd>
-<dt>pop: dictionary</dt><dd><p>A dictionary of all items alongside of its occurrences counter in the training data
-example: {1198: 893, 1270: 876, 593: 876, 2762: 867}</p>
-</dd>
-<dt>u: integer</dt><dd><p>The number of users in the training data</p>
-</dd>
-<dt>k: integer</dt><dd><p>The length of recommended lists per user</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>novelty:</dt><dd><p>The novelty of the recommendations in system level</p>
-</dd>
-</dl>
-<p>Zhou, T., Kuscsik, Z., Liu, J. G., Medo, M., Wakeling, J. R., &amp; Zhang, Y. C. (2010).
-Solving the apparent diversity-accuracy dilemma of recommender systems.
-Proceedings of the National Academy of Sciences, 107(10), 4511-4515.
-“””
-selfInformation = 0
-for item in predicted:</p>
-<blockquote>
-<div><dl class="simple">
-<dt>if item in pop.keys():</dt><dd><p>itemPopularity = pop[item]/u
-itemNoveltyValue = np.sum(-np.log2(itemPopularity))</p>
-</dd>
-<dt>else:</dt><dd><p>itemNoveltyValue = 0</p>
-</dd>
-</dl>
-<p>selfInformation += itemNoveltyValue</p>
-</div></blockquote>
-<p>noveltyScore = selfInformation/k
-return noveltyScore</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">novelty</span><span class="p">(</span><span class="n">predicted</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">pop</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the novelty for a list of recommended items for a user</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    predicted: a list of recommedned items</span>
+<span class="sd">        Ordered predictions</span>
+<span class="sd">        example: [&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;]</span>
+<span class="sd">    pop: dictionary</span>
+<span class="sd">        A dictionary of all items alongside of its occurrences counter in the training data</span>
+<span class="sd">        example: {1198: 893, 1270: 876, 593: 876, 2762: 867}</span>
+<span class="sd">    u: integer</span>
+<span class="sd">        The number of users in the training data</span>
+<span class="sd">    k: integer</span>
+<span class="sd">        The length of recommended lists per user</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    ----------</span>
+<span class="sd">    novelty:</span>
+<span class="sd">        The novelty of the recommendations in system level</span>
+
+<span class="sd">    Metric Definition</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Zhou, T., Kuscsik, Z., Liu, J. G., Medo, M., Wakeling, J. R., &amp; Zhang, Y. C. (2010).</span>
+<span class="sd">    Solving the apparent diversity-accuracy dilemma of recommender systems.</span>
+<span class="sd">    Proceedings of the National Academy of Sciences, 107(10), 4511-4515.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">selfInformation</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">predicted</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pop</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">itemPopularity</span> <span class="o">=</span> <span class="n">pop</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">/</span><span class="n">u</span>
+            <span class="n">itemNoveltyValue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">itemPopularity</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">itemNoveltyValue</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">selfInformation</span> <span class="o">+=</span> <span class="n">itemNoveltyValue</span>
+    <span class="n">noveltyScore</span> <span class="o">=</span> <span class="n">selfInformation</span><span class="o">/</span><span class="n">k</span>
+    <span class="k">return</span> <span class="n">noveltyScore</span>
+</pre></div>
+</div>
 </section>
 <section id="catalog-coverage">
 <h3>Catalog Coverage<a class="headerlink" href="#catalog-coverage" title="Permalink to this headline">¶</a></h3>
 <p>Catalog Coverage is one of the most common metrics used to evaluate recommender systems.</p>
-<dl>
-<dt>def catalogCoverage(predicted: List[list], catalog: set):</dt><dd><p>“””
-Computes the catalog coverage for k lists of recommendations
-Coverage is the percent of items in the training data the model is able to recommend on a test set</p>
-<dl class="simple">
-<dt>predicted: a list of lists</dt><dd><p>Ordered predictions
-example: [[‘X’, ‘Y’, ‘Z’], [‘X’, ‘Y’, ‘Z’]]</p>
-</dd>
-<dt>catalog: list</dt><dd><p>A list of all unique items in the training data
-example: [‘A’, ‘B’, ‘C’, ‘X’, ‘Y’, ‘Z’]</p>
-</dd>
-<dt>k: integer</dt><dd><p>The number of observed recommendation lists
-which randomly choosed in our offline setup</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>catalogCoverage:</dt><dd><p>The catalog coverage of the recommendations as a percent
-rounded to 2 decimal places</p>
-</dd>
-</dl>
-<p>Ge, M., Delgado-Battenfeld, C., &amp; Jannach, D. (2010, September).
-Beyond accuracy: evaluating recommender systems by coverage and serendipity.
-In Proceedings of the fourth ACM conference on Recommender systems (pp. 257-260). ACM.
-“””
-predictedFlattened = [p for sublist in predicted for p in sublist]
-LPredictions = len(set(predictedFlattened))
-catalogCoverage = round(LPredictions / (len(catalog) * 1.0) * 100, 2)
-return catalogCoverage</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">catalogCoverage</span><span class="p">(</span><span class="n">predicted</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">list</span><span class="p">],</span> <span class="n">catalog</span><span class="p">:</span> <span class="nb">set</span><span class="p">):</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Computes the catalog coverage for k lists of recommendations</span>
+<span class="sd">Coverage is the percent of items in the training data the model is able to recommend on a test set</span>
+
+<span class="sd">Parameters</span>
+<span class="sd">----------</span>
+<span class="sd">predicted: a list of lists</span>
+<span class="sd">    Ordered predictions</span>
+<span class="sd">    example: [[&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;], [&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;]]</span>
+<span class="sd">catalog: list</span>
+<span class="sd">    A list of all unique items in the training data</span>
+<span class="sd">    example: [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;]</span>
+<span class="sd">k: integer</span>
+<span class="sd">    The number of observed recommendation lists</span>
+<span class="sd">    which randomly choosed in our offline setup</span>
+
+<span class="sd">Returns</span>
+<span class="sd">----------</span>
+<span class="sd">catalogCoverage:</span>
+<span class="sd">    The catalog coverage of the recommendations as a percent</span>
+<span class="sd">    rounded to 2 decimal places</span>
+
+<span class="sd">Metric Definition</span>
+<span class="sd">-----------------</span>
+<span class="sd">Ge, M., Delgado-Battenfeld, C., &amp; Jannach, D. (2010, September).</span>
+<span class="sd">Beyond accuracy: evaluating recommender systems by coverage and serendipity.</span>
+<span class="sd">In Proceedings of the fourth ACM conference on Recommender systems (pp. 257-260). ACM.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">predictedFlattened</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">predicted</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+<span class="n">LPredictions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">predictedFlattened</span><span class="p">))</span>
+<span class="n">catalogCoverage</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">LPredictions</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">catalogCoverage</span>
+</pre></div>
+</div>
 </section>
 <section id="personalization">
 <h3>Personalization<a class="headerlink" href="#personalization" title="Permalink to this headline">¶</a></h3>
 <p>Personalization is one of the most common metrics used to evaluate recommender systems.</p>
-<dl>
-<dt>def personalization(predicted: List[list]):</dt><dd><p>“””
-Personalization measures recommendation similarity across users.
-A high score indicates good personalization (user’s lists of recommendations are different).
-A low score indicates poor personalization (user’s lists of recommendations are very similar).
-A model is “personalizing” well if the set of recommendations for each user is different.</p>
-<dl class="simple">
-<dt>predicted: a list of lists</dt><dd><p>Ordered predictions
-example: [[‘X’, ‘Y’, ‘Z’], [‘X’, ‘Y’, ‘Z’]]</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>The personalization score for all recommendations.</p>
-</div></blockquote>
-<p>“””</p>
-<dl>
-<dt>def makeRecMatrix(predicted: List[list]):</dt><dd><dl class="simple">
-<dt>df = pd.DataFrame(data=predicted).reset_index().melt(</dt><dd><p>id_vars=’index’, value_name=’item’,</p>
-</dd>
-</dl>
-<p>)
-df = df[[‘index’, ‘item’]].pivot(</p>
-<blockquote>
-<div><p>index=’index’, columns=’item’, values=’item’)</p>
-</div></blockquote>
-<p>df = pd.notna(df)*1
-recMatrix = sp.csr_matrix(df.values)
-return recMatrix</p>
-</dd>
-</dl>
-<p># Create matrix for recommendations
-predicted = np.array(predicted)
-recMatrixSparse = makeRecMatrix(predicted)
-# Calculate similarity for every user’s recommendation list
-similarity = cosine_similarity(X=recMatrixSparse, dense_output=False)
-# Get indicies for upper right triangle w/o diagonal
-upperRight = np.triu_indices(similarity.shape[0], k=1)
-# Calculate average similarity
-personalization = np.mean(similarity[upperRight])
-return 1-personalization</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">personalization</span><span class="p">(</span><span class="n">predicted</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">list</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Personalization measures recommendation similarity across users.</span>
+<span class="sd">    A high score indicates good personalization (user&#39;s lists of recommendations are different).</span>
+<span class="sd">    A low score indicates poor personalization (user&#39;s lists of recommendations are very similar).</span>
+<span class="sd">    A model is &quot;personalizing&quot; well if the set of recommendations for each user is different.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    predicted: a list of lists</span>
+<span class="sd">        Ordered predictions</span>
+<span class="sd">        example: [[&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;], [&#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;]]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The personalization score for all recommendations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">makeRecMatrix</span><span class="p">(</span><span class="n">predicted</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">list</span><span class="p">]):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">predicted</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+            <span class="n">id_vars</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span>
+            <span class="n">index</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mi">1</span>
+        <span class="n">recMatrix</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">recMatrix</span>
+
+    <span class="c1"># Create matrix for recommendations</span>
+    <span class="n">predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">predicted</span><span class="p">)</span>
+    <span class="n">recMatrixSparse</span> <span class="o">=</span> <span class="n">makeRecMatrix</span><span class="p">(</span><span class="n">predicted</span><span class="p">)</span>
+    <span class="c1"># Calculate similarity for every user&#39;s recommendation list</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">recMatrixSparse</span><span class="p">,</span> <span class="n">dense_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Get indicies for upper right triangle w/o diagonal</span>
+    <span class="n">upperRight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu_indices</span><span class="p">(</span><span class="n">similarity</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># Calculate average similarity</span>
+    <span class="n">personalization</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">similarity</span><span class="p">[</span><span class="n">upperRight</span><span class="p">])</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">-</span><span class="n">personalization</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -446,7 +444,7 @@ return 1-personalization</p>
       &copy;2022, Ali Tourani, Hossein A. Rahmani, Mohammadmehdi Naghiaei, Yashar Deldjoo.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

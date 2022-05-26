@@ -11,8 +11,9 @@ Contents
    :maxdepth: 2
    
    quickstart
+   datasets
    evaluation-metrics
-   recommendation-algorithms
+   models
 
 
 Indices and tables
