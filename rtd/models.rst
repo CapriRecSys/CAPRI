@@ -6,7 +6,7 @@ Models
 ``CAPRI`` supports the following evaluation recommendation algorithms.
 
 
-Traditional Recommendation Algorithms
+Baselines
 -------------------------------------
 
 Argument parsing
