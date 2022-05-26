@@ -21,27 +21,27 @@ This means that 75% of the suggestions I offer are applicable to the user.
 
 ::
 
-def precisionk(actual: list, recommended: list):
-    """
-    Computes the number of relevant results among the top k recommended items
+    def precisionk(actual: list, recommended: list):
+        """
+        Computes the number of relevant results among the top k recommended items
 
-    Parameters
-    ----------
-    actual: list
-        A list of ground truth items
-        example: [X, Y, Z]
-    recommended: list
-        A list of ground truth items (all possible relevant items)
-        example: [x, y, z]
+        Parameters
+        ----------
+        actual: list
+            A list of ground truth items
+            example: [X, Y, Z]
+        recommended: list
+            A list of ground truth items (all possible relevant items)
+            example: [x, y, z]
 
-    Returns
-    ----------
-        precision at k
-    """
-    relevantResults = set(actual) & set(recommended)
-    assert 0 <= len(
-        relevantResults), f"The number of relevant results is not true (currently: {len(relevantResults)})"
-    return 1.0 * len(relevantResults) / len(recommended)
+        Returns
+        ----------
+            precision at k
+        """
+        relevantResults = set(actual) & set(recommended)
+        assert 0 <= len(
+            relevantResults), f"The number of relevant results is not true (currently: {len(relevantResults)})"
+        return 1.0 * len(relevantResults) / len(recommended)
 
 
 Recall@K
