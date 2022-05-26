@@ -27,6 +27,7 @@ GoeSoCa is a novel POI recommendation method that uses geographical, social, and
 These correlations can be learned from user check-in data on POIs in the past and used to predict a user's relevance score to an unvisited POI in order to offer suggestions to them.
 Read more at `GeoSoCa's paper <https://dl.acm.org/doi/10.1145/2766462.2767711>`_
 You can also check the content of `GeoSoCa`_ model in ``CAPRI`` package.
+
 .. _GeoSoCa: https://github.com/CapriRecSys/CAPRI/tree/main/Models/GeoSoCa
 
 
@@ -40,6 +41,7 @@ It also predicts the probability of a user visiting a location by Additive Marko
 Finally, it fuses sequential influence with geographical influence and social influence into a unified recommendation framework.
 Read more at `LORE's paper <https://dl.acm.org/doi/10.1145/2666310.2666400>`_
 You can also check the content of `LORE`_ model in ``CAPRI`` package.
+
 .. _LORE: https://github.com/CapriRecSys/CAPRI/tree/main/Models/LORE
 
 USG
@@ -51,4 +53,5 @@ Accordingly, geographical influence among POIs has a significant impact on user 
 This model creates a naïve Bayesian-based collaborative recommendation system based on geographical influence.
 Read more at `USG's paper <https://dl.acm.org/doi/10.1145/2009916.2009962>`_
 You can also check the content of `USG`_ model in ``CAPRI`` package.
+
 .. _USG: https://github.com/CapriRecSys/CAPRI/tree/main/Models/USG
