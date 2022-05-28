@@ -11,9 +11,11 @@ Contents
    :maxdepth: 2
    
    quickstart
+   configuration
    datasets
    evaluation-metrics
    models
+   contribution
 
 
 Indices and tables
