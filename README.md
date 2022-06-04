@@ -2,40 +2,60 @@
 
 ![CAPRI-Context-Aware Interpretable Point-of-Interest Recommendation Framework](https://github.com/RecSys-lab/CAPRI/blob/main/_contents/cover.jpg "CAPRI-Context-Aware interpretable PoI Recommender")
 
-CAPRI is a Python implementation of a number of popular contextual POI recommendation algorithms for both implicit and explicit feedback. The framework aims to provide a rich set of components from which you can construct a customized recommender system from a set of algorithms.
+**CAPRI** is a specialized framework implemented in `Python` for evaluating and benchmarking several state-of-the-art POI recommendation models. The framework is equipped with state-of-the-art models, algorithms, well-known datasets for POI recommendations, and multi-dimensional evaluation criteria (accuracy, beyond-accuracy and user-item fairness). It also supports reproducibility of results using various adjustable configurations for comparative experiments.
 
-More complete documentation is available at [readthedocs](https://capri.readthedocs.io/en/latest/ "readthedocs").
+💡 You can have a general overview of the framework on its [web-page](https://caprirecsys.github.io/CAPRI/ "web-page"), or check the documentation on [readthedocs](https://capri.readthedocs.io/en/latest/ "readthedocs").
 
-## CAPRI Overview
+## Workflow of CAPRI
+
+Below figure illustrates the general workflow handled by **CAPRI**.
 
 ![CAPRI](https://github.com/RecSys-lab/CAPRI/blob/main/_contents/CAPRIFramework.png "CAPRI-Context-Aware interpretable PoI Recommender")
 
-## ☑️ Prerequisites
+## 🚀 Using the Framework
 
-You will need below libraries to be installed before running the application:
+Do you want to start working with **CAPRI**? It is pretty easy! Just clone the repository and follow the instructions below:
 
-- Python >= 3.4
-- NumPy >= 1.19
-- SciPy >= 1.6
-- PyInquirer >= 1.0.3
+> ⏳ We are working on making the repository available on **pip** package manager. Hence, in the next versions, you will not need to clone the framework anymore.
 
-For a simple solution, you can simply run the below command in the root directory:
+### ☑️ Prerequisites
+
+Before running the framework, there are a set of libraries to be installed:
+
+    - Python >= 3.4
+    - NumPy >= 1.19
+    - Pandas >= 0.25.2
+    - SciPy >= 1.6
+    - PyInquirer >= 1.0.3
+    - Typing_extensions >= 3.7.4.3
+
+Looking for a simpler solution? Simply run the below command in the root directory after cloning the project:
 
 ```python
 pip install -r requirements.txt
 ```
 
-## 🚀 Launch the Application
+Everything is set. Now you can use the framework! 😊
 
-Start the project by running the `main.py` in the root directory. With this, the application settings are loaded from the `config.py` file. You can select from different options to choose a model (e.g. GeoSoCa, available on the **Models** folder) and a dataset (e.g. Yelp, available on the **Data** folder) to be processed by the selected model, along with a fusion operator (e.g. prodect or sum). The system starts processing data using the selected model and provides some evaluations on it as well. The final results will be added to the **Generated** folder, withe the name template representing which model has been emplyed on which dataset and with what item selection rate.
+### 🚀 Launch the Application
+
+Now you can start the project by running the `main.py` file in the root directory. With this, the application settings are loaded from the `config.py` file. You can select from different options to choose a model (_e.g._ GeoSoCa, available on the [/Models/](https://github.com/CapriRecSys/CAPRI/tree/main/Models "/Models/") folder) and a dataset (_e.g._ Yelp, available on the [/Data/](https://github.com/CapriRecSys/CAPRI/tree/main/Data "/Data/") folder) to be processed by the selected model, along with a fusion operator (_e.g._ prodect or sum). The system starts processing data using the selected model and provides some evaluations on it. The final results (containing a evaluation file and the recommendation lists) will be added to the [/Outputs/](https://github.com/CapriRecSys/CAPRI/tree/main/Outputs "/Outputs/") folder, with a name template indicating your choices for evaluation. For instance:
+
+```python
+# The evaluation file containing the selected evaluation metrics - It shows that the user selected GeoSoCa model on Gowalla dataset with Product fusion type, applied on 5628 users where the top-10 results are selected for evaluation and the length of the recommendation lists are 15
+Eval_GeoSoCa_Gowalla_Product_5628user_top10_limit15.csv
+# The txt file containing the evaluation lists with the configurations described above
+Rec_GeoSoCa_Gowalla_Product_5628user_top10_limit15.txt
+```
 
 ## 🧩 Contribution Guide
 
+**CAPRI** is an open-source project and
 Contribution to the project can be done through various approaches:
 
 ### Adding a new dataset
 
-All datasets can be found in **./Data/** directory. In order to add a new dataset, you should:
+All datasets can be found in [/Data/](https://github.com/CapriRecSys/CAPRI/tree/main/Data "/Data/") directory. In order to add a new dataset, you should:
 
 - Modify the **config.py** file and add a record to the datasets dictionary. The key of the item should be the dataset's name (CapitalCase) and the value is an array of strings containing the dataset scopes (all CapitalCase). For instance
 
