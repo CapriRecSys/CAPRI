@@ -2563,8 +2563,8 @@ p {
     position: relative;
     display: inline-block; }
     .single-features .features-title-icon .features-icon i {
-      font-size: 88px;
-      line-height: 70px;
+      font-size: 60px;
+      line-height: 1;
       color: #0067f4;
       position: relative;
       z-index: 5; }
