@@ -2411,8 +2411,8 @@ p {
       padding-top: 190px;
       padding-bottom: 150px; } }
   .slider-content .title {
-    font-size: 88px;
-    line-height: 96px;
+    font-size: 60px;
+    line-height: 1.1;
     color: #fff;
     font-weight: 700; }
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
