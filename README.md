@@ -52,13 +52,13 @@ Rec_GeoSoCa_Gowalla_Product_5628user_top10_limit15.txt
 
 Contributing to open source codes is a rewarding method to learn, teach, and gain experience. We welcome all contributions from bug fixes to new features and extensions. Do you want to be a contributer of the project? Read more about is in our [contribution guide page](https://capri.readthedocs.io/en/latest/contribution.html "readthedocs").
 
-## Team
+<!-- ## Team
 
 CAPRI is developed with ❤️ by:
 
 | <a href="https://github.com/alitourani"><img src="https://github.com/alitourani.png?size=70"></a> | <a href="https://github.com/rahmanidashti"><img src="https://github.com/rahmanidashti.png?size=70"></a> | <a href="https://github.com/naghiaei"><img src="https://github.com/naghiaei.png" width="70"></a> | <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a> |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")                                     | [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")                                  | [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu")                             | [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")                                     |
+| [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")                                     | [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")                                  | [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu")                             | [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")                                     | -->
 
 ## 📝 Citation
 
