@@ -1,6 +1,7 @@
 from utils import logger
 from PyInquirer import prompt
 from config import datasets, models, fusions, evaluationMetrics
+from config import defaultModel, defaultDataset, defaultFusion, defaultEvaluation, isInteractive
 
 modelChoices = []
 fusionChoices = []
@@ -100,7 +101,18 @@ def getUserChoices():
     userInputs: dict
         Dictionary containing the user inputs
     """
-    userInputs = interactiveCommandForm()
+    if (isInteractive):
+        userInputs = interactiveCommandForm()
+    else:
+        userInputs = {
+            'Model': defaultModel,
+            'Dataset': defaultDataset,
+            'Fusion': defaultFusion,
+            'Evaluation': defaultEvaluation,
+            'Confirmation': True,
+            'Ignored': []
+        }
+    # Validating user inputs
     confirmation = userInputs['Confirmation']
     if (confirmation == True):
         print('Validating your choices ...')

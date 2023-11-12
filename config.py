@@ -4,11 +4,20 @@ import os
 dataDirectory = os.path.abspath('./Data/')
 outputsDir = os.path.abspath('./Outputs/')
 
+# Framework Parameter
+isInteractive = False  # Should be false when the Terminal is not available
+
 # Default Parameters
 topK = 10  # Top-k items to evaluate (default: 10)
 limitUsers = -1  # Limit the number of users (default: -1)
 listLimit = 15  # Limit the length of recommendation list (default: 10)
 activeUsersPercentage = [5, 20]  # Calculate [n] percents of users as active
+
+# Default Parameters (non-interactive)
+defaultModel = "GeoSoCa" # Can be "GeoSoCa", "LORE", or "USG"
+defaultDataset = "Gowalla" # Can be "Gowalla", "Yelp", or "Foursquare"
+defaultFusion = "Product" # Can be "Product" or "Sum"
+defaultEvaluation = ["Precision"] # Can be a set of "Precision", "Recall", "mAP", or "NDCG"
 
 # Key: Model name, Value: Covered Contexts
 models = {

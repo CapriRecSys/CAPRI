@@ -17,6 +17,7 @@ Below figure illustrates the general workflow handled by **CAPRI**.
 Do you want to start working with **CAPRI**? It is pretty easy! Just clone the repository and follow the instructions below:
 
 > ⏳ The framework works on **Python 3.9.x** for now, and will be upgraded to newer versions in the recent future.
+
 > ⏳ We are working on making the repository available on **pip** package manager. Hence, in the next versions, you will not need to clone the framework anymore.
 
 ### ☑️ Prerequisites
@@ -45,7 +46,9 @@ Everything is set. Now you can use the framework! 😊
 
 ### 🚀 Launch the Application
 
-Now you can start the project by running the `main.py` file in the root directory. With this, the application settings are loaded from the `config.py` file. You can select from different options to choose a model (_e.g._ GeoSoCa, available on the [/Models/](https://github.com/CapriRecSys/CAPRI/tree/main/Models "/Models/") folder) and a dataset (_e.g._ Yelp, available on the [/Data/](https://github.com/CapriRecSys/CAPRI/tree/main/Data "/Data/") folder) to be processed by the selected model, along with a fusion operator (_e.g._ prodect or sum). The system starts processing data using the selected model and provides some evaluations on it. The final results (containing a evaluation file and the recommendation lists) will be added to the [/Outputs/](https://github.com/CapriRecSys/CAPRI/tree/main/Outputs "/Outputs/") folder, with a name template indicating your choices for evaluation. For instance:
+> 💡 Before you start, check if the terminal is locked or no. The system has an interactive mode (in which you can select parameters in the terminal) and a non-interactive mode (in which the default values will be used - check "Default Parameters (non-interactive)" section in `config.py`). You can choose between these modes by setting `isInteractive = False/True` in `config.py`
+
+You can start the project by running the `main.py` file in the root directory. With this, the application settings are loaded from the `config.py` file. You can select from different options to choose a model (_e.g._ GeoSoCa, available on the [/Models/](https://github.com/CapriRecSys/CAPRI/tree/main/Models "/Models/") folder) and a dataset (_e.g._ Yelp, available on the [/Data/](https://github.com/CapriRecSys/CAPRI/tree/main/Data "/Data/") folder) to be processed by the selected model, along with a fusion operator (_e.g._ prodect or sum). The system starts processing data using the selected model and provides some evaluations on it. The final results (containing a evaluation file and the recommendation lists) will be added to the [/Outputs/](https://github.com/CapriRecSys/CAPRI/tree/main/Outputs "/Outputs/") folder, with a name template indicating your choices for evaluation. For instance:
 
 ```python
 # The evaluation file containing the selected evaluation metrics - It shows that the user selected GeoSoCa model on Gowalla dataset with Product fusion type, applied on 5628 users where the top-10 results are selected for evaluation and the length of the recommendation lists are 15
