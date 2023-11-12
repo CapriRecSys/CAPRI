@@ -22,12 +22,13 @@ Do you want to start working with **CAPRI**? It is pretty easy! Just clone the r
 
 Before running the framework, there are a set of libraries to be installed:
 
-    - Python >= 3.4
-    - NumPy >= 1.19
+    - numpy >= 1.26.1
+    - pandas >= 2.1.3
     - Pandas >= 0.25.2
-    - SciPy >= 1.6
+    - scikit_learn >= 1.3.2
+    - scipy >= 1.11.3
     - PyInquirer >= 1.0.3
-    - Typing_extensions >= 3.7.4.3
+    - typing_extensions >= 4.8.0
 
 Looking for a simpler solution? Simply run the below command in the root directory after cloning the project:
 

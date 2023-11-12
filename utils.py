@@ -30,9 +30,9 @@ def logger(message: str, logLevel: logLevelType = "info", noConsolePrint: bool =
     # Create a log in the log file
     currentMoment = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     printMessage = f'[{currentMoment}] {message}'
-    if (logLevel is 'warn'):
+    if (logLevel == 'warn'):
         logging.warn(printMessage)
-    elif (logLevel is 'error'):
+    elif (logLevel == 'error'):
         logging.error(printMessage)
     else:
         logging.info(printMessage)

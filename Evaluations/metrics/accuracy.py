@@ -127,7 +127,7 @@ def ndcgk(actual: list, predicted: list, relevance=None, at=None):
     # Convert list to numpy array
     actual, predicted = np.asarray(list(actual)), np.asarray(list(predicted))
     # Check the relevance value
-    if relevance is None:
+    if relevance == None:
         relevance = np.ones_like(actual)
     assert len(relevance) == actual.shape[0]
     # Creating a dictionary associating itemId to its relevance
