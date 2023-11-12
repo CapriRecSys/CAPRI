@@ -16,6 +16,7 @@ Below figure illustrates the general workflow handled by **CAPRI**.
 
 Do you want to start working with **CAPRI**? It is pretty easy! Just clone the repository and follow the instructions below:
 
+> ⏳ The framework works on **Python 3.9.x** for now, and will be upgraded to newer versions in the recent future.
 > ⏳ We are working on making the repository available on **pip** package manager. Hence, in the next versions, you will not need to clone the framework anymore.
 
 ### ☑️ Prerequisites
@@ -33,6 +34,10 @@ Before running the framework, there are a set of libraries to be installed:
 Looking for a simpler solution? Simply run the below command in the root directory after cloning the project:
 
 ```python
+# Create a new virtual environment (Python 3.9.x)
+python -m venv capri
+
+# Install
 pip install -r requirements.txt
 ```
 

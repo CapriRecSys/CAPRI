@@ -109,6 +109,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# capri virtual environment
+capri
 
 # Spyder project settings
 .spyderproject
