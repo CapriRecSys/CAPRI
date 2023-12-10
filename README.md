@@ -61,44 +61,40 @@ Rec_GeoSoCa_Gowalla_Product_5628user_top10_limit15.txt
 
 Contributing to open source codes is a rewarding method to learn, teach, and gain experience. We welcome all contributions from bug fixes to new features and extensions. Do you want to be a contributer of the project? Read more about is in our [contribution guide page](https://capri.readthedocs.io/en/latest/contribution.html "readthedocs").
 
-<!-- ## Team
+## Team
 
 CAPRI is developed with ❤️ by:
 
 | <a href="https://github.com/alitourani"><img src="https://github.com/alitourani.png?size=70"></a> | <a href="https://github.com/rahmanidashti"><img src="https://github.com/rahmanidashti.png?size=70"></a> | <a href="https://github.com/naghiaei"><img src="https://github.com/naghiaei.png" width="70"></a> | <a href="https://github.com/yasdel"><img src="https://yasdel.github.io/images/yashar_avator.jpg" width="70"></a> |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")                                     | [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")                                  | [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu")                             | [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")                                     | -->
+| [Ali Tourani](mailto:ali.tourani@uni.lu "ali.tourani@uni.lu")                                     | [Hossein A. Rahmani](mailto:h.rahmani@ucl.ac.uk "h.rahmani@ucl.ac.uk")                                  | [MohammadMehdi Naghiaei](mailto:naghiaei@usc.edu "naghiaei@usc.edu")                             | [Yashar Deldjoo](mailto:yashar.deldjoo@poliba.it "yashar.deldjoo@poliba.it")                                     |
 
 ## 📝 Citation
 
-If you find **CAPRI** useful for your research or development, please cite the following [paper](https://arxiv.org/):
+If you find **CAPRI** useful for your research or development, please cite the following [paper](https://doi.org/10.1016/j.simpa.2023.100606):
 
 ```
-@inproceedings{RecsysLab2022CAPRI,
-  title={TBD},
-  author={TBA},
-  booktitle={TBA},
-  year={2022}
+@article{tourani2024capri,
+  title={CAPRI: Context-aware point-of-interest recommendation framework},
+  author={Tourani, Ali and Rahmani, Hossein A and Naghiaei, Mohammadmehdi and Deldjoo, Yashar},
+  journal={Software Impacts},
+  volume={19},
+  pages={100606},
+  year={2024},
+  publisher={Elsevier}
 }
 ```
 
 ## 🟢 Versions
 
-- Version 0.1
+- Version 1.0
   - Implementation of the framework with a simple GUI
   - Supporting well-known models, datasets, and evaluation metrics for POI recommendation
   - Saving the previously executed calculation files for reusability
-
-## 🟠 Known Issues
-
-- Saving only userIds in Active/Inactive lists (groupby and drop freq)
-- Loading more calculated files from disk
-  - AKDE in GeoSoCa
-  - S and G for USG
-  - FCF, AMK, and KDE in LORE
 
 ## 🟡 TODOs
 
 - Adding the impact of **Weighted Sum Fusion** when running models
 - Adding a separate metric evaluations class for fairness
 - Making a pip package for CAPRI (release planning)
+- Improving the docs and `ReadTheDocs`
